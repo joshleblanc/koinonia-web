@@ -1,0 +1,32 @@
+<%= form_with(model: game_version.persisted? ? game_version : [game_version.game, game_version]) do |form| %>
+  <% if game_version.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(game_version.errors.count, "error") %> prohibited this game_version from being saved:</h2>
+
+      <ul>
+        <% game_version.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :game_id, style: "display: block" %>
+    <%= form.text_field :game_id %>
+  </div>
+
+  <div>
+    <%= form.label :scripts, style: "display: block" %>
+    <%= form.text_field :scripts %>
+  </div>
+
+  <div>
+    <%= form.label :level, style: "display: block" %>
+    <%= form.text_field :level %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
