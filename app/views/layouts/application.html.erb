@@ -12,6 +12,8 @@
 
   <body>
     <%= render "layouts/navbar", current_user: current_user %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

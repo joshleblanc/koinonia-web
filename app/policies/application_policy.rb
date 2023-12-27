@@ -13,7 +13,7 @@ class ApplicationPolicy
   end
 
   def show?
-    @record.respond_to?(:user) && @record.user == @user
+    index?
   end
 
   def create?

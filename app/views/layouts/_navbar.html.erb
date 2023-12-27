@@ -8,9 +8,9 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <% if current_user %>
-      <a class="navbar-item">
+      <%= link_to games_url, class: "navbar-item" do %>
         Games
-      </a>
+      <% end %>
     <% end %>
   </div>
   <div class="navbar-end">
