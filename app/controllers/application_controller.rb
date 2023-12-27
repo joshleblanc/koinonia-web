@@ -8,8 +8,10 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user!
         if doorkeeper_token 
+            Rails.log.info "Authenticating with doorkeeper, #{doorkeeper_token.resource_owner_id}"
             User.find(doorkeeper_token.resource_owner_id)
         else
+            Rails.log.info "Authentication with devise"
             super
         end
     end
