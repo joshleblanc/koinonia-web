@@ -1,0 +1,36 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    <% if current_user %>
+      <a class="navbar-item">
+        Games
+      </a>
+    <% end %>
+  </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <% if current_user %>
+          <%= button_to destroy_user_session_url, class: "button is-light", method: :delete do %>
+            Log out
+          <% end %>
+        <% else %>
+          <%= link_to new_user_registration_url, class: "button is-primary" do %>
+            <strong>Sign up</strong>
+          <% end %>
+
+          <%= link_to new_user_session_url, class: "button is-light" do %>
+            Log in
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
