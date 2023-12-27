@@ -1,4 +1,16 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
+#
 class Game < ApplicationRecord
+    belongs_to :user
     has_many :game_versions, dependent: :destroy
 
     def latest_game_version

@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
-    @games = Game.all
+    @games = policy_scope(Game)
   end
 
   # GET /games/1 or /games/1.json
@@ -13,6 +13,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    authorize @game
   end
 
   # GET /games/1/edit
@@ -22,6 +23,9 @@ class GamesController < ApplicationController
   # POST /games or /games.json
   def create
     @game = Game.new(game_params)
+    @game.user = current_user
+
+    authorize @game
 
     respond_to do |format|
       if @game.save
@@ -61,6 +65,7 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+      authorize @game
     end
 
     # Only allow a list of trusted parameters through.

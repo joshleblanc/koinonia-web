@@ -68,3 +68,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 4.9"
+
+gem "annotate", "~> 3.2", :group => :development
+
+gem "pundit", "~> 2.3"

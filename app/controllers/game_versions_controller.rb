@@ -4,7 +4,7 @@ class GameVersionsController < ApplicationController
 
   # GET /game_versions or /game_versions.json
   def index
-    @game_versions = @game.game_versions.all
+    @game_versions = policy_scope(@game.game_versions)
   end
 
   # GET /game_versions/1 or /game_versions/1.json
@@ -14,6 +14,7 @@ class GameVersionsController < ApplicationController
   # GET /game_versions/new
   def new
     @game_version = @game.game_versions.build
+    authorize @game_version
   end
 
   # GET /game_versions/1/edit
@@ -23,6 +24,9 @@ class GameVersionsController < ApplicationController
   # POST /game_versions or /game_versions.json
   def create
     @game_version = @game.game_versions.build(game_version_params)
+    @game_version.user = current_user
+
+    authorize @game_version
 
     respond_to do |format|
       if @game_version.save
@@ -62,6 +66,7 @@ class GameVersionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game_version
       @game_version = GameVersion.find(params[:id])
+      authorize @game_version
     end
 
     def set_game 
