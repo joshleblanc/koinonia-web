@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+  }
+  
   resources :games do 
     resources :game_versions, shallow: true
   end
