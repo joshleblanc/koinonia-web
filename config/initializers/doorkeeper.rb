@@ -11,7 +11,7 @@ Doorkeeper.configure do
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
-    current_user
+    current_user || warden.authenticate!(scope: :user)
   end
 
   resource_owner_from_credentials do |routes|
