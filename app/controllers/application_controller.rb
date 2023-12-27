@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token, if: -> { request.content_type == "application/json" }
 
     def authenticate_user!
-        doorkeeper_authorize! || super
+        if doorkeeper_token 
+            User.find(doorkeeper_token.resource_owner_id)
+        else
+            super
+        end
     end
 end
