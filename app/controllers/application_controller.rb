@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token, if: -> { request.content_type == "application/json" }
 
     def authenticate_user!
-        authenticate_user_from_token! || super
-    end
-
-    def authenticate_user_from_token!
-        User.find_by(token: user_token)
-    end
-
-    def user_token
-        request.headers['X-AUTH-TOKEN'].presence || params['auth_token'].presence
+        doorkeeper_authorize!(:read, :write) || super
     end
 end
