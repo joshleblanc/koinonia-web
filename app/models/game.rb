@@ -13,6 +13,8 @@ class Game < ApplicationRecord
     belongs_to :user
     has_many :game_versions, dependent: :destroy
 
+    has_one_attached :cover_image
+
     def latest_game_version
         game_versions.order(created_at: :desc).first
     end
