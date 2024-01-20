@@ -13,4 +13,14 @@
 class GameVersion < ApplicationRecord
   belongs_to :user
   belongs_to :game
+
+  before_save :set_published_at, if: :published_changed?
+
+  def set_published_at
+    self.published_at = if published?
+                          Time.now
+                        else
+                          nil
+                        end
+  end
 end
