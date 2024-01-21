@@ -1,7 +1,9 @@
 <article id="<%= dom_id game %>" class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img />
+      <% if game.cover_image.attached? %>
+        <%= image_tag game.cover_image %>
+      <% end  %>
     </p>
   </figure>
   <div class="media-content">
