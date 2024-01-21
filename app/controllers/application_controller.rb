@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     # after_action :verify_policy_scoped, only: :index
     
     before_action :authenticate_user!
-    skip_before_action :verify_authenticity_token, if: -> { request.content_type == "application/json" }
+    skip_before_action :verify_authenticity_token
 
     def authenticate_user!
         if doorkeeper_token 
