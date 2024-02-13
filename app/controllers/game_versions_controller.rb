@@ -75,6 +75,6 @@ class GameVersionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_version_params
-      params.require(:game_version).permit(:game_id, :scripts, :level, :published)
+      params.require(:game_version).permit(:game_id, :scripts, :level, :templates, :published)
     end
 end
