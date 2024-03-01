@@ -78,3 +78,5 @@ gem "annotate", "~> 3.2", :group => :development
 gem "pundit", "~> 2.3"
 
 gem "doorkeeper", "~> 5.6"
+
+gem "rack-cors", "~> 2.0"
