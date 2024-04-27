@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_13_222122) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_27_113743) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_222122) do
   create_table "books", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "game_version_package_versions", force: :cascade do |t|
+    t.bigint "game_version_id", null: false
+    t.bigint "package_version_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_version_id"], name: "index_game_version_package_versions_on_game_version_id"
+    t.index ["package_version_id"], name: "index_game_version_package_versions_on_package_version_id"
   end
 
   create_table "game_versions", force: :cascade do |t|
@@ -112,6 +121,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_222122) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "package_versions", force: :cascade do |t|
+    t.bigint "package_id", null: false
+    t.json "levels"
+    t.json "scripts"
+    t.json "templates"
+    t.boolean "published", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_package_versions_on_package_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_packages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -128,6 +157,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_222122) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "game_version_package_versions", "game_versions"
+  add_foreign_key "game_version_package_versions", "package_versions"
   add_foreign_key "game_versions", "games"
   add_foreign_key "game_versions", "users"
   add_foreign_key "games", "users"
@@ -135,4 +166,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_222122) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "package_versions", "packages"
+  add_foreign_key "packages", "users"
 end

@@ -20,6 +20,6 @@ class Game < ApplicationRecord
     end
 
     def latest_published_game_version
-        game_versions.where(published: true).order(created_at: :desc).first
+        game_versions.published.order(created_at: :desc).first
     end
 end

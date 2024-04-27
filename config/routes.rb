@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper
+
+  resources :packages do 
+    resources :package_versions, shallow: true
+  end
   
   devise_for :users, controllers: {
     registrations: "users/registrations",

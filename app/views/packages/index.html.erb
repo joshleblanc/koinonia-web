@@ -1,0 +1,16 @@
+<%= render "shared/hero", title: "Packages" %>
+
+<p style="color: green"><%= notice %></p>
+
+<section class="section">
+  <div class="container" id="packages">
+    <% @packages.each do |package| %>
+      <%= render package %>
+      <p>
+        <%= link_to "Show this package", package %>
+      </p>
+    <% end %>
+    <%= link_to "New package", new_package_path %>
+  </div>
+</section>
+

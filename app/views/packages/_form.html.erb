@@ -1,0 +1,51 @@
+<%= form_with(model: package) do |form| %>
+  <% if package.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(package.errors.count, "error") %> prohibited this package from being saved:</h2>
+
+      <ul>
+        <% package.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, class: "label" %>
+ 
+    <div class="control">
+      <%= form.text_field :name, class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, class: "label" %>
+
+    <div class="control">
+      <%= form.text_area :description, class: "input" %>
+    </div>
+  </div>
+
+  <div class="file has-name is-boxed">
+    <%= form.label :thumbnails, class: "file-label" do %>
+      <%= form.file_field :thumbnails, multiple: true, class: "file-input" %>
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label"> Thumbnails </span>
+      </span>
+      <% if form.object.thumbnails.any? %>
+        <span class="file-name"><%= form.object.thumbnails.count %> thumbnails</span>
+      <% else %> 
+        <span class="file-name">...</span>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="control pt-2">
+    <%= form.submit class: "button is-link" %>
+  </div>
+<% end %>

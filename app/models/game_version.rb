@@ -14,7 +14,12 @@ class GameVersion < ApplicationRecord
   belongs_to :user
   belongs_to :game
 
+  has_many :game_version_package_versions
+  has_many :package_versions, through: :game_version_package_versions
+
   before_save :set_published_at, if: :published_changed?
+
+  scope :published, -> { where(published: true) }
 
   def set_published_at
     self.published_at = if published?

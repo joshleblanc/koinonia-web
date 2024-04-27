@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Package versions</h1>
+
+<div id="package_versions">
+  <% @package_versions.each do |package_version| %>
+    <%= render package_version %>
+    <p>
+      <%= link_to "Show this package version", package_version %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New package version", new_package_version_path %>
