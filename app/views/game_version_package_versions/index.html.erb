@@ -1,0 +1,11 @@
+<%= turbo_Frame_tag dom_id(@game_version, :packages) do %>
+  <p style="color: green"><%= notice %></p>
+  <h1>Game version package versions</h1>
+  <% @game_version_package_versions.each do |game_version_package_version| %>
+    <%= render game_version_package_version %>
+    <p>
+      <%= link_to "Show this game version package version", game_version_package_version %>
+    </p>
+  <% end %>
+  <%= link_to "New game version package version", new_game_version_package_version_path %>
+<% end %>

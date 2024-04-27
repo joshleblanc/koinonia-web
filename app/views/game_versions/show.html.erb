@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<%= turbo_frame_tag dom_id(@game_version.game, :versions) do %> 
+  <p style="color: green"><%= notice %></p>
 
-<%= render @game_version %>
+  <%= render @game_version %>
 
-<div>
-  <%= link_to "Edit this game version", edit_game_version_path(@game_version) %> |
-  <%= link_to "Back to game versions", game_game_versions_path(@game_version.game) %>
+  <div>
+    <%= link_to "Edit this game version", edit_game_version_path(@game_version) %> |
+    <%= link_to "Back to game versions", game_game_versions_path(@game_version.game) %>
 
-  <%= button_to "Destroy this game version", @game_version, method: :delete %>
-</div>
+    <%= button_to "Destroy this game version", @game_version, method: :delete %>
+  </div>
+<% end %>

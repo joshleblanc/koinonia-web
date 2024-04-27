@@ -1,14 +1,15 @@
+<%= turbo_frame_tag dom_id(@game, :versions) do %>
+<%= render "shared/hero", title: "Versions" %>
+
 <p style="color: green"><%= notice %></p>
 
-<h1>Game versions</h1>
-
-<div id="game_versions">
   <% @game_versions.each do |game_version| %>
     <%= render game_version %>
     <p>
       <%= link_to "Show this game version", game_version %>
     </p>
   <% end %>
-</div>
+  
+  <%= link_to "New game version", new_game_game_version_path(@game) %>
+<% end %>
 
-<%= link_to "New game version", new_game_game_version_path(@game) %>

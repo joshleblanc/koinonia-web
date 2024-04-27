@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   }
   
   resources :games do 
-    resources :game_versions, shallow: true
+    resources :game_versions, shallow: true do 
+      resources :game_version_package_versions, shallow: true
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

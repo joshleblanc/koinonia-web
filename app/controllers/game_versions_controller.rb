@@ -26,6 +26,10 @@ class GameVersionsController < ApplicationController
     @game_version = @game.game_versions.build(game_version_params)
     @game_version.user = current_user
 
+    package_versions = Package.where(id: params[:game_version][:packages]).map(&:latest_package_version)
+
+    @game_version.package_versions = package_versions
+
     authorize @game_version
 
     respond_to do |format|
@@ -41,6 +45,12 @@ class GameVersionsController < ApplicationController
 
   # PATCH/PUT /game_versions/1 or /game_versions/1.json
   def update
+
+    package_versions = Package.where(id: params[:packages]).map(&:latest_package_version)
+
+    puts "game versions: ", @game_version.package_versions
+    puts "package versions: ", package_versions
+
     respond_to do |format|
       if @game_version.update(game_version_params)
         format.html { redirect_to game_version_url(@game_version), notice: "Game version was successfully updated." }
@@ -75,6 +85,6 @@ class GameVersionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_version_params
-      params.require(:game_version).permit(:game_id, :scripts, :level, :templates, :published)
+      params.require(:game_version).permit(:game_id, :scripts, :level, :templates, :published, package_version_ids: [])
     end
 end
