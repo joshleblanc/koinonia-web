@@ -1,6 +1,4 @@
-json.extract! package, :id, :name, :description, :user_id, :created_at, :updated_at
-json.latest_package_version_id package.latest_package_version&.id
-json.latest_published_package_version_id package.latest_published_package_version&.id
+json.extract! package, :id, :name, :description, :user_id, :created_at, :updated_at, :latest_package_version_id, :latest_published_package_version_id
 json.editable current_user == package.user
 
 json.thumbnail_urls do 
