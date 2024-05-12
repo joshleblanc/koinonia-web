@@ -26,10 +26,6 @@ class GameVersionsController < ApplicationController
     @game_version = @game.game_versions.build(game_version_params)
     @game_version.user = current_user
 
-    package_versions = Package.where(id: params[:game_version][:packages]).map(&:latest_package_version)
-
-    @game_version.package_versions = package_versions
-
     authorize @game_version
 
     respond_to do |format|

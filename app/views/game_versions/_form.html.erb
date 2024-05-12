@@ -27,8 +27,8 @@
   </div>
 
   <div class="control">
-    <%= form.label :packages, class: "label" %>
-    <%= form.select :packages, { }, {}, { multiple: true, data: { controller: "tom-select", tom_select_url_value: packages_url, tom_select_value_field_value: "latest_package_version_id" }} %>
+    <%= form.label :package_version_ids, "Packages", class: "label" %>
+    <%= form.collection_select :package_version_ids, Package.all, :latest_package_version_id, :name, { multiple: true, data: { controller: "tom-select", tom_select_url_value: packages_url, tom_select_value_field_value: "latest_package_version_id" }} %>
   </div>
 
   <div>

@@ -9,7 +9,6 @@ export default class extends Controller {
     };
 
     fetchData = async (search, callback) => {
-        console.log(this);
         const resp = await fetch(this.urlValue + ".json");
         const json = await resp.json();
         callback(json);
@@ -21,7 +20,6 @@ export default class extends Controller {
             valueField: this.valueFieldValue || "id",
             labelField: 'name',
             searchField: ['name'],
-            maxItems: 1,
             selectOnTab: true,
             placeholder: "Select...",
             closeAfterSelect: true,
@@ -32,9 +30,6 @@ export default class extends Controller {
             highlight: true,
             sortField: { field: "name", direction: "asc" },
             load: this.fetchData,
-            // render: {
-            //     option: renderOption
-            // }
         };
         this.select = new TomSelect(this.element, settings);
     }

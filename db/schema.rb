@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_131749) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_120751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_131749) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.bigint "latest_game_version_id"
+    t.bigint "latest_published_game_version_id"
+    t.index ["latest_game_version_id"], name: "index_games_on_latest_game_version_id"
+    t.index ["latest_published_game_version_id"], name: "index_games_on_latest_published_game_version_id"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -129,7 +133,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_131749) do
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["package_id"], name: "index_package_versions_on_package_id"
+    t.index ["user_id"], name: "index_package_versions_on_user_id"
   end
 
   create_table "packages", force: :cascade do |t|
@@ -138,6 +144,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_131749) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "latest_package_version_id"
+    t.bigint "latest_published_package_version_id"
+    t.index ["latest_package_version_id"], name: "index_packages_on_latest_package_version_id"
+    t.index ["latest_published_package_version_id"], name: "index_packages_on_latest_published_package_version_id"
     t.index ["user_id"], name: "index_packages_on_user_id"
   end
 
@@ -161,11 +171,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_131749) do
   add_foreign_key "game_version_package_versions", "package_versions"
   add_foreign_key "game_versions", "games"
   add_foreign_key "game_versions", "users"
+  add_foreign_key "games", "game_versions", column: "latest_game_version_id"
+  add_foreign_key "games", "game_versions", column: "latest_published_game_version_id"
   add_foreign_key "games", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "package_versions", "packages"
+  add_foreign_key "package_versions", "users"
+  add_foreign_key "packages", "package_versions", column: "latest_package_version_id"
+  add_foreign_key "packages", "package_versions", column: "latest_published_package_version_id"
   add_foreign_key "packages", "users"
 end
