@@ -2,10 +2,12 @@ class Conversation < ApplicationRecord
   belongs_to :user
   has_many :conversation_contents
 
-  def receive
+  def receive_message
     response = GeminiClient.instance.generate_content({ 
       contents: conversation_contents.order(:created_at).map(&:for_request) 
     })
+
+    Rails.logger.debug response
 
     conversation_contents.build(
       role: "model",
@@ -14,7 +16,7 @@ class Conversation < ApplicationRecord
     )
   end
 
-  def send(what)
+  def send_message(what)
     conversation_contents.build(
       role: "user",
       text: what,

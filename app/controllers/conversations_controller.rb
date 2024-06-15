@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
 
   # GET /conversations or /conversations.json
   def index
-    @conversations = policy_scope(Conversation.all)
+    @conversations = policy_scope(Conversation.all.order(created_at: :desc))
   end
 
   # GET /conversations/1 or /conversations/1.json
@@ -22,7 +22,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations or /conversations.json
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = Conversation.new
     @conversation.user = current_user
 
     authorize @conversation

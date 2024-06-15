@@ -1,12 +1,9 @@
-  <%= render 'shared/hero', title: "New Conversation Content" %>
+<%= render 'shared/hero', title: "New Conversation Content" %>
 
 <%= turbo_frame_tag dom_id(@conversation, :new_content) do %>
   <section class="section">
     <div class="container">
       <%= render "form", conversation_content: @conversation_content %>
-      <div>
-        <%= link_to "Back to conversation contents", conversation_conversation_contents_path(@conversation) %>
-      </div>
     </div>
   </section>
 

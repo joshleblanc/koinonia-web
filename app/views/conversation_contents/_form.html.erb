@@ -12,12 +12,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_area :text %>
+  <div class="field">
+    <%= form.label :text, class: "label" %>
+    <div class="control">
+        <%= form.text_field :text, class: "input" %>
+    </div>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Send", data: {turbo_submits_with: "Sending..."}, class: "button is-link"  %>
   </div>
 <% end %>

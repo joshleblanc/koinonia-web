@@ -1,9 +1,13 @@
-<h1>New conversation</h1>
+<%= render 'shared/hero', title: "New Conversation" %>
 
-<%= render "form", conversation: @conversation %>
+<section class="section">
+  <div class="container">
+    <%= render "form", conversation: @conversation %>
 
-<br>
+    <br>
 
-<div>
-  <%= link_to "Back to conversations", conversations_path %>
-</div>
+    <div>
+      <%= link_to "Back to conversations", conversations_path %>
+    </div>
+  </div>
+</section>
