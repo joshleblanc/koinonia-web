@@ -33,6 +33,7 @@ class ConversationContentsController < ApplicationController
         @received_conversation_content = @conversation.receive_message
         @received_conversation_content.save
 
+        @conversation_content = @received_conversation_content
         format.html { redirect_to new_conversation_conversation_content_url(@conversation), notice: "Conversation content was successfully created." }
         format.json { render :show, status: :created, location: @received_conversation_content }
       else
