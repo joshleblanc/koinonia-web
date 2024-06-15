@@ -1,6 +1,6 @@
 class Conversation < ApplicationRecord
   belongs_to :user
-  has_many :conversation_contents
+  has_many :conversation_contents, dependent: :destroy
 
   def receive_message
     response = GeminiClient.instance.generate_content({ 
