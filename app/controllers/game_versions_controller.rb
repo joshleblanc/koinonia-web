@@ -44,9 +44,6 @@ class GameVersionsController < ApplicationController
 
     package_versions = Package.where(id: params[:packages]).map(&:latest_package_version)
 
-    puts "game versions: ", @game_version.package_versions
-    puts "package versions: ", package_versions
-
     respond_to do |format|
       if @game_version.update(game_version_params)
         format.html { redirect_to game_version_url(@game_version), notice: "Game version was successfully updated." }

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :conversations do 
+    resources :conversation_contents, shallow: true
+  end
   use_doorkeeper
 
   resources :packages do 

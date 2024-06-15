@@ -1,0 +1,24 @@
+<%= render "shared/hero", title: "Conversations" %>
+
+<section class="section">
+  <div class="container">
+    <p style="color: green"><%= notice %></p>
+
+    <h1>Conversations</h1>
+
+    <div id="conversations">
+      <% @conversations.each do |conversation| %>
+        <div class="box">
+          <%= render conversation %>
+          <p>
+            <%= link_to "Show this conversation", conversation %>
+          </p>
+        </div>
+        
+      <% end %>
+    </div>
+
+    <%= link_to "New conversation", new_conversation_path %>
+  </div>
+</section>
+

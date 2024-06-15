@@ -1,0 +1,23 @@
+<%- p conversation_content, conversation_content.conversation %>
+<%= form_with(model: [conversation_content.conversation, conversation_content]) do |form| %>
+  <% if conversation_content.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(conversation_content.errors.count, "error") %> prohibited this conversation_content from being saved:</h2>
+
+      <ul>
+        <% conversation_content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :text, style: "display: block" %>
+    <%= form.text_area :text %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

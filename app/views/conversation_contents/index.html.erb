@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(@conversation, :contents) do %>
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Conversation contents</h1>
+
+  <div id="conversation_contents">
+    <% @conversation_contents.each do |conversation_content| %>
+      <%= render conversation_content %>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag dom_id(@conversation, :new_content), src: new_conversation_conversation_content_path(@conversation) %>
+<% end %>

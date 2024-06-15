@@ -1,0 +1,23 @@
+<%= render "shared/hero", title: "Conversation" %>
+
+<p style="color: green"><%= notice %></p>
+
+<section class="section">
+  <div class="container">
+    <%= render @conversation %>
+
+    <div>
+      <%= link_to "Edit this conversation", edit_conversation_path(@conversation) %> |
+      <%= link_to "Back to conversations", conversations_path %>
+
+      <%= button_to "Destroy this conversation", @conversation, method: :delete %>
+    </div>
+
+    <div class="box">
+      <%= turbo_frame_tag dom_id(@conversation, :contents), src: conversation_conversation_contents_path(@conversation) do %>
+        <p>Loading contents...</p>
+      <% end %> 
+    </div>
+  </div>
+</section>
+

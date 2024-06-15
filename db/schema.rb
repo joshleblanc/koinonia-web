@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_120751) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_15_152059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,9 +42,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_120751) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "conversation_contents", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "conversation_id", null: false
+    t.string "role"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_conversation_contents_on_conversation_id"
+    t.index ["user_id"], name: "index_conversation_contents_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
   create_table "game_version_package_versions", force: :cascade do |t|
@@ -167,6 +180,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_120751) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "conversation_contents", "conversations"
+  add_foreign_key "conversation_contents", "users"
+  add_foreign_key "conversations", "users"
   add_foreign_key "game_version_package_versions", "game_versions"
   add_foreign_key "game_version_package_versions", "package_versions"
   add_foreign_key "game_versions", "games"
