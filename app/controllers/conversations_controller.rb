@@ -22,7 +22,7 @@ class ConversationsController < ApplicationController
 
   # POST /conversations or /conversations.json
   def create
-    @conversation = Conversation.new
+    @conversation = Conversation.new(conversation_params)
     @conversation.user = current_user
 
     authorize @conversation
@@ -70,6 +70,6 @@ class ConversationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def conversation_params
-      {}
+      params.require(:conversation).permit(:title)
     end
 end

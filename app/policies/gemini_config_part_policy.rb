@@ -1,0 +1,2 @@
+class GeminiConfigPartPolicy < AdminPolicy
+end

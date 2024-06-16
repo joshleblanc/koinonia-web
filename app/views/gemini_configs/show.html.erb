@@ -1,0 +1,19 @@
+<%= render "shared/hero", title: "Gemini Config" %>
+
+<%= @gemini_config.gemini_config_parts.count %>
+
+<p style="color: green"><%= notice %></p>
+<section class="section">
+  <div class="container">
+    <%= render @gemini_config %>
+    <div>
+      <%= link_to "Edit this gemini config", edit_gemini_config_path(@gemini_config) %>
+    </div>
+
+    <div class="box">
+      <%= turbo_frame_tag dom_id(@gemini_config, :parts), src: gemini_config_gemini_config_parts_url(@gemini_config), refresh: :morph do %>
+        <p>Loading contents...</p>
+      <% end %> 
+    </div>
+  </div>
+</section>

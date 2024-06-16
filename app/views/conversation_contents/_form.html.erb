@@ -1,4 +1,3 @@
-<%- p conversation_content, conversation_content.conversation %>
 <%= form_with(model: [conversation_content.conversation, conversation_content]) do |form| %>
   <% if conversation_content.errors.any? %>
     <div style="color: red">

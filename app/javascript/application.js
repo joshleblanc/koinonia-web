@@ -2,6 +2,15 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+addEventListener("turbo:before-stream-render", (streamAction) => {
+    console.log("before stream render", streamAction)
+})
+
+addEventListener("turbo:morph", () => {
+    console.log("morphed")
+})
+
+
 addEventListener("turbo:submit-start", ({ target }) => {
     for (const field of target.elements) {
         field.disabled = true

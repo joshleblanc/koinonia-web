@@ -2,10 +2,17 @@ class Conversation < ApplicationRecord
   belongs_to :user
   has_many :conversation_contents, dependent: :destroy
 
+  broadcasts_refreshes
+
   def receive_message
-    response = GeminiClient.instance.generate_content({ 
+
+    body =  {
       contents: conversation_contents.order(:created_at).map(&:for_request) 
-    })
+    }
+
+    Rails.logger.debug body
+
+    response = GeminiClient.instance.generate_content(body)
 
     Rails.logger.debug response
 

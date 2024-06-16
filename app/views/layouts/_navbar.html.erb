@@ -19,6 +19,12 @@
       <%= link_to conversations_url, class: "navbar-item" do %>
         Conversations
       <% end %>
+
+      <%- if current_user && current_user.admin? %>
+        <%= link_to gemini_config_url(GeminiConfig.instance), class: "navbar-item" do %>
+          Gemini Config
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="navbar-end">

@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<%= turbo_frame_tag dom_id(@gemini_config_part) do %>
+  <div class="box">
+    <%= render @gemini_config_part %>
+    <div>
+      <%= link_to "Edit this gemini config part", edit_gemini_config_part_path(@gemini_config_part) %> |
+      <%= link_to "Back to gemini config parts", gemini_config_gemini_config_parts_path(@gemini_config_part.gemini_config) %>
+      <%= button_to "Destroy this gemini config part", @gemini_config_part, method: :delete %>
+    </div>
+  </div>
+<% end %>

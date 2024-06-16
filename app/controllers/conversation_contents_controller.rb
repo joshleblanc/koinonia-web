@@ -74,6 +74,7 @@ class ConversationContentsController < ApplicationController
 
     def set_conversation
       @conversation = Conversation.find(params[:conversation_id])
+      authorize @conversation
     end
 
     # Only allow a list of trusted parameters through.

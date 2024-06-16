@@ -4,9 +4,10 @@
 
 <section class="section">
   <div class="container">
-    <%= render @conversation %>
 
     <div class="box">
+      <%= render @conversation %>
+
       <%= link_to "Back to conversations", conversations_path %>
 
       <%= button_to "Destroy this conversation", @conversation, method: :delete, class: "button is-danger mt-2" %>
@@ -19,4 +20,3 @@
     </div>
   </div>
 </section>
-

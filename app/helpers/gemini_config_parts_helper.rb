@@ -1,0 +1,2 @@
+module GeminiConfigPartsHelper
+end

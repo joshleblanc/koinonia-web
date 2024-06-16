@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_15_152059) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_16_140334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_15_152059) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
@@ -94,6 +95,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_15_152059) do
     t.index ["latest_game_version_id"], name: "index_games_on_latest_game_version_id"
     t.index ["latest_published_game_version_id"], name: "index_games_on_latest_published_game_version_id"
     t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "gemini_config_parts", force: :cascade do |t|
+    t.text "text"
+    t.bigint "gemini_config_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gemini_config_id"], name: "index_gemini_config_parts_on_gemini_config_id"
+  end
+
+  create_table "gemini_configs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -190,6 +204,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_15_152059) do
   add_foreign_key "games", "game_versions", column: "latest_game_version_id"
   add_foreign_key "games", "game_versions", column: "latest_published_game_version_id"
   add_foreign_key "games", "users"
+  add_foreign_key "gemini_config_parts", "gemini_configs"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :gemini_configs, except: [:destroy] do 
+    resources :gemini_config_parts, shallow: true
+  end
 
   resources :conversations do 
     resources :conversation_contents, shallow: true

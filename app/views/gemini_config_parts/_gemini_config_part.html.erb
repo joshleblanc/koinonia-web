@@ -1,0 +1,12 @@
+<%= turbo_frame_tag dom_id(gemini_config_part) do %>
+  <div class="box m-2">
+    <div id="<%= dom_id gemini_config_part %>">
+      <p>
+        <%= gemini_config_part.text %>
+      </p>
+    </div>
+    <p>
+      <%= link_to "Show this gemini config part", gemini_config_part %>
+    </p>
+  </div>
+<% end %>
