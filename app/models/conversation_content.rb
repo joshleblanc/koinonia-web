@@ -5,7 +5,7 @@ class ConversationContent < ApplicationRecord
   broadcasts_to ->(model) { [model.conversation, :contents] }, target: "conversation_contents"
 
   def for_request
-    if conversation.conversation_contents.count == 1 
+    if conversation.conversation_contents.order(:created_at).first == self 
       { role:, parts: [ *base_parts,{ text: } ]}
 
     else 
