@@ -1,22 +1,4 @@
-<%= form_with(model: gemini_config_part.persisted? ? gemini_config_part : [gemini_config_part.gemini_config, gemini_config_part]) do |form| %>
-  <% if gemini_config_part.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(gemini_config_part.errors.count, "error") %> prohibited this gemini_config_part from being saved:</h2>
-
-      <ul>
-        <% gemini_config_part.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_area :text %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>  
+<%= simple_form_for gemini_config_part.persisted? ? gemini_config_part : [gemini_config_part.gemini_config, gemini_config_part] do %>
+  <%= _1.input :text %>
+  <%= _1.button :submit %>
 <% end %>

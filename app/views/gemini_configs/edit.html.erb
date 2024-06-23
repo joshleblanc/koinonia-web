@@ -1,10 +1,11 @@
-<h1>Editing gemini config</h1>
-
-<%= render "form", gemini_config: @gemini_config %>
-
-<br>
-
-<div>
-  <%= link_to "Show this gemini config", @gemini_config %> |
-  <%= link_to "Back to gemini configs", gemini_configs_path %>
-</div>
+<%= render "shared/hero", title: "Editing gemini config" %>
+<section class="section">
+  <div class="container">
+    <%= render "form", gemini_config: @gemini_config %>
+    <br>
+    <div>
+      <%= link_to "Show this gemini config", @gemini_config %> |
+      <%= link_to "Back to gemini configs", gemini_config_path(@gemini_config) %>
+    </div>
+  </div>
+</section>

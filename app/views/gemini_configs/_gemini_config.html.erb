@@ -1,2 +1,3 @@
-<div id="<%= dom_id gemini_config %>">
-</div>
+<%= show_for gemini_config do %>
+    <%= _1.attribute :maximum_tokens %>
+<% end %>

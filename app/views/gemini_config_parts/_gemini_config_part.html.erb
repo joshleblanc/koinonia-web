@@ -1,12 +1,4 @@
-<%= turbo_frame_tag dom_id(gemini_config_part) do %>
-  <div class="box m-2">
-    <div id="<%= dom_id gemini_config_part %>">
-      <p>
-        <%= gemini_config_part.text %>
-      </p>
-    </div>
-    <p>
-      <%= link_to "Show this gemini config part", gemini_config_part %>
-    </p>
-  </div>
+<%= show_for gemini_config_part do %>
+  <%= _1.value :text, content_html: { class: "whitespace-pre overflow-auto sm:col-span-3" }%>
+  <%= link_to "Edit", edit_gemini_config_part_path(gemini_config_part), class: "pt-2" %>
 <% end %>

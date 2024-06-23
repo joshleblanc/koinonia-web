@@ -1,16 +1,4 @@
-<%= simple_form_for gemini_config do |f| %>
-  <% if gemini_config.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(gemini_config.errors.count, "error") %> prohibited this gemini_config from being saved:</h2>
-
-      <ul>
-        <% gemini_config.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.input :maximum_tokens %>
-  <%= f.button :submit %>
+<%= simple_form_for gemini_config do %>
+  <%= _1.input :maximum_tokens%>
+  <%= _1.button :submit %>
 <% end %>

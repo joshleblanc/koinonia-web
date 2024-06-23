@@ -1,8 +1,8 @@
 <%= render "shared/hero", title: "New Part" %>
-<%= turbo_frame_tag dom_id(@gemini_config, :new_part) do %>
-  <section class="section">
-    <div class="container">
+<section class="section">
+  <div class="container">
+    <%= turbo_frame_tag dom_id(@gemini_config, :new_part) do %>
       <%= render "form", gemini_config_part: @gemini_config_part %>
-    </div>
-  </section>
-<% end  %>
+    <% end  %>
+  </div>
+</section>

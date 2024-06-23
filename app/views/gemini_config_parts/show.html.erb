@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-<%= turbo_frame_tag dom_id(@gemini_config_part) do %>
+<%= turbo_frame_tag dom_id(@gemini_config_part.gemini_config, :parts) do %>
   <div class="box">
     <%= render @gemini_config_part %>
     <div>

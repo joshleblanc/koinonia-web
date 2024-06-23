@@ -4,7 +4,7 @@ ShowFor.setup do |config|
   config.show_for_tag = :dl
 
   # The DOM class set for show_for tag. Default is nil
-  config.show_for_class = "divide-y divide-gray-100 box"
+  config.show_for_class = "divide-y divide-gray-100 box m-4"
 
   # The tag which wraps each attribute/association call. Default is :p.
   config.wrapper_tag = :div
@@ -22,7 +22,7 @@ ShowFor.setup do |config|
   config.content_tag = :dd
 
   # The DOM class of each content tag. Default is :content.
-  config.content_class = "mt-1 text-sm leading-6 text-base-content sm:col-span-2 sm:mt-0"
+  config.content_class = "mt-1 text-sm leading-6 text-base-content sm:col-span-2 sm:mt-0 w-full"
 
   # The DOM class set for blank content tags. Default is "blank".
   # config.blank_content_class = 'no_content'

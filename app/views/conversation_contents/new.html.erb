@@ -1,12 +1,9 @@
 <%= render 'shared/hero', title: "New Conversation Content" %>
-
-<%= turbo_frame_tag dom_id(@conversation, :new_content) do %>
-  <section class="section">
-    <div class="container">
+<section class="section">
+  <div class="container">
+    <%= turbo_frame_tag dom_id(@conversation, :new_content) do %>
       <%= render "form", conversation_content: @conversation_content %>
-    </div>
-  </section>
-
-  <br>
-<% end %>
-
+      <br>
+    <% end %>
+  </div>
+</section>

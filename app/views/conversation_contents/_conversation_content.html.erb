@@ -1,6 +1,4 @@
-<div id="<%= dom_id conversation_content %>" class="box">
-  <p><strong><%= conversation_content.role %></strong></p>
-  <p style="white-space: pre">
-    <%= conversation_content.text %>
-  </p>
-</div>
+<%= show_for conversation_content do %>
+  <%= _1.attribute :role %>
+  <%= _1.attribute :text, content_html: { class: "whitespace-pre overflow-auto" } %>
+<% end %>
