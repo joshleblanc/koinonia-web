@@ -1,18 +1,7 @@
-<article id="<%= dom_id game %>" class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <% if game.cover_image.attached? %>
-        <%= image_tag game.cover_image %>
-      <% end  %>
-    </p>
-  </figure>
-  <div class="media-content">
-    <div class="content">
-      <p>
-        <strong><%= game.name %></strong>
-        <br>
-        <%= game.description %>
-      </p>
-    </div>
-  </div>
-</article>
+<%= show_for game do |g| %>
+  <%= g.attribute :cover_image do %>
+    <%= image_tag(game.cover_image) if game.cover_image.attached? %>
+  <% end %>
+  <%= g.attribute :name %>
+  <%= g.attribute :description %>
+<% end %>

@@ -1,10 +1,11 @@
-<h1>Editing package</h1>
-
-<%= render "form", package: @package %>
-
-<br>
-
-<div>
-  <%= link_to "Show this package", @package %> |
-  <%= link_to "Back to packages", packages_path %>
-</div>
+<%= render "shared/hero", title: "Editing package" %>
+<section class="section">
+  <div class="container">
+    <%= render "form", package: @package %>
+    <br>
+    <div>
+      <%= link_to "Show this package", @package %> |
+      <%= link_to "Back to packages", packages_path %>
+    </div>
+  </div>
+</section>

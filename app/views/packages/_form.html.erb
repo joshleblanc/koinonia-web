@@ -1,3 +1,9 @@
+<%= simple_form_for package do %>
+  <%= _1.input :name %>
+  <%= _1.input :description %>
+  <%= _1.input :thumbnails, multiple: true %>
+  <%= _1.button :submit %>
+<% end %>
 <%= form_with(model: package) do |form| %>
   <% if package.errors.any? %>
     <div style="color: red">

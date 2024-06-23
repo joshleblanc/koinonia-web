@@ -82,3 +82,9 @@ gem "doorkeeper", "~> 5.6"
 gem "rack-cors", "~> 2.0"
 
 gem "gemini-ai", "~> 4.0"
+
+gem "simple_form", "~> 5.3"
+
+gem "tailwindcss-rails", "~> 2.6"
+
+gem "show_for", "~> 0.8.1"

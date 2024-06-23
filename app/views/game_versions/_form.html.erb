@@ -1,37 +1,6 @@
-<%= form_with(model: game_version.persisted? ? game_version : [game_version.game, game_version]) do |form| %>
-  <% if game_version.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(game_version.errors.count, "error") %> prohibited this game_version from being saved:</h2>
-
-      <ul>
-        <% game_version.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :game_id, style: "display: block" %>
-    <%= form.text_field :game_id %>
-  </div>
-
-  <div>
-    <%= form.label :scripts, style: "display: block" %>
-    <%= form.text_field :scripts %>
-  </div>
-
-  <div>
-    <%= form.label :level, style: "display: block" %>
-    <%= form.text_field :level %>
-  </div>
-
-  <div class="control">
-    <%= form.label :package_version_ids, "Packages", class: "label" %>
-    <%= form.collection_select :package_version_ids, Package.all, :latest_package_version_id, :name, { multiple: true, data: { controller: "tom-select", tom_select_url_value: packages_url, tom_select_value_field_value: "latest_package_version_id" }} %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= simple_form_for game_version.persisted? ? game_version : [game_version.game, game_version] do %>
+  <%= _1.input :scripts %>
+  <%= _1.input :level %>
+  <%= _1.association :package_versions, collection: Package.all, value_method: :latest_package_version_id, label_method: :name, input_html: { data: { tom_select_url_value: packages_url, tom_select_value_field: "latest_package_version_id"} } %>
+  <%= _1.button :submit %>
 <% end %>

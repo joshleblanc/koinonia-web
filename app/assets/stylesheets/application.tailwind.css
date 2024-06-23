@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tom-select/dist/css/tom-select.default";
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+
+@layer components {
+  .section {
+    @apply block p-12 leading-6 text-gray-400 lg:p-12;
+  }
+
+  .box {
+    @apply block p-5 leading-6 text-base-content rounded-box bg-base-300 drop-shadow;
+
+  }
+
+  .container {
+    @apply relative py-5 px-6 leading-6 text-base-content bg-base-100 rounded-md;
+  }
+}

@@ -1,22 +1,7 @@
-<div id="<%= dom_id game_version %>">
-  <p>
-    <strong>Scripts:</strong>
-    <%= game_version.scripts %>
-  </p>
-
-  <p>
-    <strong>Level:</strong>
-    <%= game_version.level %>
-  </p>
-
-  <p>
-    <strong>Published</strong>
-    <%= game_version.published %>
-  </p>
-
-  <p>
-    <strong>Published At</strong>
-    <%= game_version.published_at %>
-  </p>
-
-</div>
+<%= show_for game_version do %>
+  <%= _1.attribute :scripts %>
+  <%= _1.attribute :level %>
+  <%= _1.attribute :published %>
+  <%= _1.attribute :published_at %>
+  <%= _1.association :packages %>
+<% end %>

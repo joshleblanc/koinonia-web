@@ -1,37 +1,6 @@
-<%= form_with(model: package_version.persisted? ? package_version : [package_version.package, package_version]) do |form| %>
-  <% if package_version.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(package_version.errors.count, "error") %> prohibited this package_version from being saved:</h2>
-
-      <ul>
-        <% package_version.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :package_id, style: "display: block" %>
-    <%= form.text_field :package_id %>
-  </div>
-
-  <div>
-    <%= form.label :levels, style: "display: block" %>
-    <%= form.text_field :levels %>
-  </div>
-
-  <div>
-    <%= form.label :scripts, style: "display: block" %>
-    <%= form.text_field :scripts %>
-  </div>
-
-  <div>
-    <%= form.label :templates, style: "display: block" %>
-    <%= form.text_field :templates %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= simple_form_for package_version.persisted? ? package_version : [package_version.package, package_version] do %>
+  <%= _1.input :levels %>
+  <%= _1.input :scripts %> 
+  <%= _1.input :templates %>
+  <%= _1.button :submit %>
 <% end %>

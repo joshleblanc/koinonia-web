@@ -1,9 +1,10 @@
-<h1>New game</h1>
-
-<%= render "form", game: @game %>
-
-<br>
-
-<div>
-  <%= link_to "Back to games", games_path %>
-</div>
+<%= render "shared/hero", title: "New Game" %>
+<section class="section">
+  <div class="container">
+    <%= render "form", game: @game %>
+    <br>
+    <div>
+      <%= link_to "Back to games", games_path %>
+    </div>
+  </div>
+</section>

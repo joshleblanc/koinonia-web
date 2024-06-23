@@ -1,50 +1,125 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div id="navbarBasicExample" class="navbar-menu">
-    <% if current_user %>
-      <%= link_to games_url, class: "navbar-item" do %>
-        Games
-      <% end %>
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+      >
+        <% if current_user %>
+          <li>
+            <%= link_to games_url, class: "navbar-item" do %>
+              Games
+            <% end %>
+          </li>
 
-      <%= link_to packages_url, class: "navbar-item" do %>
-        Packages
-      <% end %>
+          <li>
+            <%= link_to packages_url, class: "navbar-item" do %>
+              Packages
+            <% end %>
+          </li>
 
-      <%= link_to conversations_url, class: "navbar-item" do %>
-        Conversations
-      <% end %>
+          <li>
+            <%= link_to conversations_url, class: "navbar-item" do %>
+              Conversations
+            <% end %>
+          </li>
 
-      <%- if current_user && current_user.admin? %>
-        <%= link_to gemini_config_url(GeminiConfig.instance), class: "navbar-item" do %>
-          Gemini Config
+          <%- if current_user && current_user.admin? %>
+            <li>
+              <%= link_to gemini_config_url(GeminiConfig.instance), class: "navbar-item" do %>
+                Gemini Config
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %>
+      </ul>
+    </div>
+    <a class="btn btn-ghost text-xl">Koinonia</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      <% if current_user %>
+          <li>
+            <%= link_to games_url, class: "navbar-item" do %>
+              Games
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to packages_url, class: "navbar-item" do %>
+              Packages
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to conversations_url, class: "navbar-item" do %>
+              Conversations
+            <% end %>
+          </li>
+
+          <%- if current_user && current_user.admin? %>
+            <li>
+              <%= link_to gemini_config_url(GeminiConfig.instance), class: "navbar-item" do %>
+                Gemini Config
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+    </ul>
   </div>
   <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        <% if current_user %>
-          <%= button_to destroy_user_session_url, class: "button is-light", method: :delete do %>
-            Log out
-          <% end %>
-        <% else %>
-          <%= link_to new_user_registration_url, class: "button is-primary" do %>
-            <strong>Sign up</strong>
-          <% end %>
+    <% if current_user %>
+      <%= button_to destroy_user_session_url, class: "button is-light", method: :delete do %>
+        Log out
+      <% end %>
+    <% else %>
+      <%= link_to new_user_registration_url, class: "button is-primary" do %>
+        <strong>Sign up</strong>
+      <% end %>
 
-          <%= link_to new_user_session_url, class: "button is-light" do %>
-            Log in
-          <% end %>
-        <% end %>
+      <%= link_to new_user_session_url, class: "button is-light" do %>
+        Log in
+      <% end %>
+    <% end %>
+    <div class="dropdown">
+      <div tabindex="0" role="button" class="btn m-1">
+        Theme
+        <svg
+          width="12px"
+          height="12px"
+          class="inline-block h-2 w-2 fill-current opacity-60"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 2048 2048">
+          <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+        </svg>
       </div>
+      <ul tabindex="0" class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-96 overflow-y-scroll" data-controller="theme-change">
+        <% themes.each do |theme| %>
+          <li>
+            <input
+              type="radio"
+              name="theme-dropdown"
+              class="btn btn-sm btn-block btn-ghost justify-start"
+              aria-label="<%= theme %>"
+              data-set-theme="<%= theme %>"
+              value="<%= theme %>" />
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
-</nav>
