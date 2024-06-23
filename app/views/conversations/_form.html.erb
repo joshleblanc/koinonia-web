@@ -1,24 +1,4 @@
-<%= form_with(model: conversation) do |form| %>
-  <% if conversation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
-
-      <ul>
-        <% conversation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title, class: "label" %>
-    <div class="control">
-      <%= form.text_field :title, class: "input" %>
-    </div>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= simple_form_for conversation do %>
+  <%= _1.input :title %>
+  <%= _1.button :submit %>
 <% end %>

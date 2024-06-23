@@ -88,3 +88,5 @@ gem "simple_form", "~> 5.3"
 gem "tailwindcss-rails", "~> 2.6"
 
 gem "show_for", "~> 0.8.1"
+
+gem "rubyzip", "~> 2.3", require: "zip"

@@ -28,7 +28,7 @@ class ConversationContent < ApplicationRecord
 
   def for_request
     if conversation.conversation_contents.order(:created_at).first == self 
-      { role:, parts: [ *base_parts,{ text: } ]}
+      { role:, parts: [ *base_parts, *documentation, { text: } ]}
 
     else 
       { role:, parts: [ { text: } ]}
@@ -37,6 +37,10 @@ class ConversationContent < ApplicationRecord
 
   def base_parts 
     GeminiConfig.instance.gemini_config_parts.pluck(:text).map { { text: _1 } }
+  end
+
+  def documentation 
+    GeminiConfig.instance.documentation_contents&.map { { text: _1 }} || []
   end
 
   ## 
