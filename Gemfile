@@ -90,3 +90,7 @@ gem "tailwindcss-rails", "~> 2.6"
 gem "show_for", "~> 0.8.1"
 
 gem "rubyzip", "~> 2.3", require: "zip"
+
+gem "solid_queue", "~> 0.3.3"
+
+gem "solid_cache", "~> 0.6.0"
