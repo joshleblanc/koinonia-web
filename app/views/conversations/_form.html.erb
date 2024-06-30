@@ -1,4 +1,7 @@
 <%= simple_form_for conversation do %>
   <%= _1.input :title %>
+  <%= _1.input :send_baseline_prompt %>
+  <%= _1.input :send_documentation %>
+  <%= _1.input :send_project_code %>
   <%= _1.button :submit %>
 <% end %>

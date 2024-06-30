@@ -36,11 +36,19 @@ class ConversationContent < ApplicationRecord
   end
 
   def base_parts 
-    GeminiConfig.instance.gemini_config_parts.pluck(:text).map { { text: _1 } }
+    if conversation.send_baseline_prompt? 
+      GeminiConfig.instance.gemini_config_parts.pluck(:text).map { { text: _1 } }
+    else 
+      []
+    end
   end
 
   def documentation 
-    GeminiConfig.instance.documentation_contents&.map { { text: _1 }} || []
+    if conversation.send_documentation? 
+      GeminiConfig.instance.documentation_contents&.map { { text: _1 }} || []
+    else 
+      []
+    end
   end
 
   ## 

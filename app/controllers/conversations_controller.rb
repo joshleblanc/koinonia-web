@@ -70,6 +70,6 @@ class ConversationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def conversation_params
-      params.require(:conversation).permit(:title)
+      params.require(:conversation).permit(:title, :send_baseline_prompt, :send_documentation, :send_project_code)
     end
 end

@@ -2,11 +2,14 @@
 #
 # Table name: conversations
 #
-#  id         :bigint           not null, primary key
-#  title      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id                   :bigint           not null, primary key
+#  send_baseline_prompt :boolean          default(TRUE)
+#  send_documentation   :boolean          default(TRUE)
+#  send_project_code    :boolean          default(TRUE)
+#  title                :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint           not null
 #
 # Indexes
 #

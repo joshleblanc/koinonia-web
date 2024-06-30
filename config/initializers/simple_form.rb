@@ -169,6 +169,18 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
+  config.wrappers :checkbox, class: "form-control",
+    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
+    b.use :html5
+    b.optional :readonly
+    b.wrapper :label_input, tag: :label, class: "label cursor-pointer" do 
+      _1.use :label_text, class: "lavel-text"
+      _1.use :input, class: "checkbox"
+    end
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :error, wrap_with: { tag: :span, class: :error }
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 
@@ -176,7 +188,7 @@ SimpleForm.setup do |config|
   # Defaults to :nested for bootstrap config.
   #   inline: input + label
   #   nested: label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
   config.button_class = 'btn mt-8'
@@ -241,7 +253,7 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  config.wrapper_mappings = { file: :file, select: :select }
+  config.wrapper_mappings = { file: :file, select: :select, boolean: :checkbox }
 
   # Namespaces where SimpleForm should look for custom input classes that
   # override default inputs.

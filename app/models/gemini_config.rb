@@ -2,9 +2,10 @@
 #
 # Table name: gemini_configs
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint           not null, primary key
+#  maximum_tokens :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 class GeminiConfig < ApplicationRecord
     has_many :gemini_config_parts, dependent: :destroy
