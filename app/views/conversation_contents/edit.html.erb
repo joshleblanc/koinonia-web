@@ -1,10 +1,13 @@
-<h1>Editing conversation content</h1>
-
-<%= render "form", conversation_content: @conversation_content %>
-
-<br>
-
-<div>
-  <%= link_to "Show this conversation content", @conversation_content %> |
-  <%= link_to "Back to conversation contents", conversation_contents_path %>
-</div>
+<%= render "shared/hero", title: "Editing convesation content" %>
+<section class="section">
+  <div class="container">
+    <%= turbo_frame_tag @conversation_content.conversation, :contents do %>
+      <%= render "form", conversation_content: @conversation_content %>
+      <br>
+      <div>
+        <%= link_to "Show this conversation content", @conversation_content %> |
+        <%= link_to "Back to conversation contents", conversation_conversation_contents_path(@conversation_content.conversation) %>
+      </div>
+    <% end %>
+  </div>
+</section>

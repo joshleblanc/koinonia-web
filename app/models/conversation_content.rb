@@ -9,30 +9,49 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  conversation_id :bigint           not null
+#  next_id         :bigint
+#  prev_id         :bigint
 #  user_id         :bigint           not null
 #
 # Indexes
 #
 #  index_conversation_contents_on_conversation_id  (conversation_id)
+#  index_conversation_contents_on_next_id          (next_id)
+#  index_conversation_contents_on_prev_id          (prev_id)
 #  index_conversation_contents_on_user_id          (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (conversation_id => conversations.id)
+#  fk_rails_...  (next_id => conversation_contents.id)
+#  fk_rails_...  (prev_id => conversation_contents.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class ConversationContent < ApplicationRecord
   belongs_to :user
   belongs_to :conversation, touch: true
+  belongs_to :next, class_name: "ConversationContent", required: false
+  belongs_to :prev, class_name: "ConversationContent", required: false
 
   scope :last_24_hours, -> { where(role: :user, created_at: (Time.zone.now - 24.hours)..) }
   scope :last_minute, -> { where(role: :user, created_at: (Time.zone.now - 1.minute)..) }
  
   broadcasts_refreshes_to :conversation
 
-  validate :requests_per_day 
-  validate :tokens_per_minute
-  validate :requests_per_minute
+  validate :requests_per_day, on: :create
+  validate :tokens_per_minute, on: :create
+  validate :requests_per_minute, on: :create
+
+  before_destroy :link_siblings!, prepend: true
+
+  def link_siblings!
+    next_content = ConversationContent.find_by(prev_id: id)
+    prev_content = ConversationContent.find_by(next_id: id)
+
+
+    prev_content.update(next: next_content)
+    next_content.update(prev: prev_content)
+  end
 
   def requests_per_day
     if ConversationContent.last_24_hours.count >= GeminiConfig.instance.requests_per_day

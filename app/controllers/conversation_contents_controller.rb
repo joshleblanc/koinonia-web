@@ -60,7 +60,7 @@ class ConversationContentsController < ApplicationController
     @conversation_content.destroy!
 
     respond_to do |format|
-      format.html { redirect_to conversation_contents_url, notice: "Conversation content was successfully destroyed." }
+      format.html { redirect_to conversation_conversation_contents_url(@conversation_content.conversation), notice: "Conversation content was successfully destroyed." }
       format.json { head :no_content }
     end
   end

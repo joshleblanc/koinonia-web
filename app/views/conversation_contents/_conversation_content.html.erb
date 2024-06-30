@@ -2,4 +2,13 @@
   <%= _1.attribute :role %>
   <%= _1.attribute :text, content_html: { class: "whitespace-pre overflow-auto" } %>
   <%= _1.attribute :token_count %>
+
+  <% if conversation_content.prev && params[:action] == "show" %>
+    <%= link_to "Prev", conversation_content_path(conversation_content.prev)  %>
+  <% end %>
+  <%= link_to "Show", conversation_content_path(conversation_content) unless params[:action] == "show" %>
+  <% if conversation_content.next && params[:action] == "show" %>
+    <%= link_to "Next", conversation_content_path(conversation_content.next) %>
+  <% end %>
+
 <% end %>

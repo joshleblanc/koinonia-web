@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_135712) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_30_172854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_135712) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "token_count", default: 0
+    t.bigint "next_id"
+    t.bigint "prev_id"
     t.index ["conversation_id"], name: "index_conversation_contents_on_conversation_id"
+    t.index ["next_id"], name: "index_conversation_contents_on_next_id"
+    t.index ["prev_id"], name: "index_conversation_contents_on_prev_id"
     t.index ["user_id"], name: "index_conversation_contents_on_user_id"
   end
 
@@ -316,6 +320,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_135712) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "conversation_contents", "conversation_contents", column: "next_id"
+  add_foreign_key "conversation_contents", "conversation_contents", column: "prev_id"
   add_foreign_key "conversation_contents", "conversations"
   add_foreign_key "conversation_contents", "users"
   add_foreign_key "conversations", "users"

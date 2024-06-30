@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @conversation_content %>
 
-<div>
+<%= turbo_frame_tag @conversation_content.conversation, :contents do %>
+  <%= render @conversation_content %>
+  <div>
   <%= link_to "Edit this conversation content", edit_conversation_content_path(@conversation_content) %> |
   <%= link_to "Back to conversation contents", conversation_conversation_contents_path(@conversation_content.conversation) %>
 
   <%= button_to "Destroy this conversation content", @conversation_content, method: :delete %>
 </div>
+<% end %>
+
