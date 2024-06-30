@@ -25,7 +25,6 @@ class Conversation < ApplicationRecord
 
   broadcasts_refreshes
 
-
   def receive_message
 
     content = conversation_contents.order(:created_at)
