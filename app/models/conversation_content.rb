@@ -22,9 +22,9 @@
 #
 class ConversationContent < ApplicationRecord
   belongs_to :user
-  belongs_to :conversation
+  belongs_to :conversation, touch: true
 
-  broadcasts_to ->(model) { [model.conversation, :contents] }, target: "conversation_contents"
+  broadcasts_refreshes_to :conversation
 
   def for_request
     if conversation.conversation_contents.order(:created_at).first == self 

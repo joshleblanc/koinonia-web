@@ -24,21 +24,21 @@ class ConversationContentsController < ApplicationController
 
   # POST /conversation_contents or /conversation_contents.json
   def create
-    @sent_conversation_content = @conversation.send_message(conversation_content_params[:text])
+    @conversation_content = @conversation.send_message(conversation_content_params[:text])
 
-    authorize @sent_conversation_content
+    authorize @conversation_content
 
     respond_to do |format|
-      if @sent_conversation_content.save       
-        @received_conversation_content = @conversation.receive_message
-        @received_conversation_content.save
+      if @conversation_content.save     
+        
+        ReceiveMessageJob.perform_later(@conversation)
 
-        @conversation_content = @received_conversation_content
+        format.turbo_stream
         format.html { redirect_to new_conversation_conversation_content_url(@conversation), notice: "Conversation content was successfully created." }
-        format.json { render :show, status: :created, location: @received_conversation_content }
+        format.json { render :show, status: :created, location: @conversation_content }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @received_conversation_content.errors, status: :unprocessable_entity }
+        format.json { render json: @conversation_content.errors, status: :unprocessable_entity }
       end
     end
   end

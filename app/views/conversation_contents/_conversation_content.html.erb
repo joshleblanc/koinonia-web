@@ -1,4 +1,5 @@
 <%= show_for conversation_content do %>
   <%= _1.attribute :role %>
   <%= _1.attribute :text, content_html: { class: "whitespace-pre overflow-auto" } %>
+  <%= _1.attribute :token_count %>
 <% end %>

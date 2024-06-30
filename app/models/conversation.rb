@@ -25,10 +25,15 @@ class Conversation < ApplicationRecord
 
   broadcasts_refreshes
 
+
   def receive_message
 
+    content = conversation_contents.order(:created_at)
+
+    new_content = content.last
+
     body =  {
-      contents: conversation_contents.order(:created_at).map(&:for_request) 
+      contents: content.map(&:for_request) 
     }
 
     Rails.logger.debug body
@@ -37,10 +42,13 @@ class Conversation < ApplicationRecord
 
     Rails.logger.debug response
 
+    new_content.update(token_count: response["usageMetadata"]["promptTokenCount"] - content.sum(:token_count))
+
     conversation_contents.build(
       role: "model",
       text: response["candidates"].first["content"]["parts"].first["text"],
-      user:
+      user:,
+      token_count: response["usageMetadata"]["candidatesTokenCount"]
     )
   end
 
@@ -50,5 +58,9 @@ class Conversation < ApplicationRecord
       text: what,
       user:
     )
+  end
+
+  def token_count 
+    conversation_contents.sum(:token_count)
   end
 end

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@conversation, :contents) do %>
   
-  <%= turbo_stream_from @conversation, :contents %>
+  <%= turbo_stream_from @conversation %>
   
   <p style="color: green"><%= notice %></p>
 
