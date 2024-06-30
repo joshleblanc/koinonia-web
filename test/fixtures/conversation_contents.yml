@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  role            :string
 #  text            :text
+#  token_count     :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  conversation_id :bigint           not null

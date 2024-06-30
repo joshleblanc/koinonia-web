@@ -1,5 +1,7 @@
 <%= simple_form_for gemini_config do %>
-  <%= _1.input :maximum_tokens%>
+  <%= _1.input :tokens_per_minute %>
+  <%= _1.input :requests_per_day %>
+  <%= _1.input :requests_per_minute %>
   <%= _1.input :documentation %>
   <%= _1.button :submit %>
 <% end %>

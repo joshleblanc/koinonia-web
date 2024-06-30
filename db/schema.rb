@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_123311) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_30_134515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -113,6 +113,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_123311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "maximum_tokens"
+    t.integer "requests_per_day", default: 1500
+    t.integer "tokens_per_minute", default: 15
+    t.integer "requests_per_minute", default: 1000000
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

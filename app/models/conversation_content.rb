@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  role            :string
 #  text            :text
+#  token_count     :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  conversation_id :bigint           not null
@@ -24,7 +25,32 @@ class ConversationContent < ApplicationRecord
   belongs_to :user
   belongs_to :conversation, touch: true
 
+  scope :last_24_hours, -> { where(role: :user, created_at: (Time.zone.now - 24.hours)..) }
+  scope :last_minute, -> { where(role: :user, created_at: (Time.zone.now - 1.minute)..) }
+ 
   broadcasts_refreshes_to :conversation
+
+  validate :requests_per_day 
+  validate :tokens_per_minute
+  validate :requests_per_minute
+
+  def requests_per_day
+    if ConversationContent.last_24_hours.count >= GeminiConfig.instance.requests_per_day
+      errors.add(:base, "requests per day exceeded")
+    end
+  end
+
+  def tokens_per_minute 
+    if ConversationContent.last_minute.sum(:token_count) >= GeminiConfig.instance.tokens_per_minute
+      errors.add(:base, "tokens per minute exceeded")
+    end
+  end
+
+  def requests_per_minute 
+    if ConversationContent.last_minute.count >= GeminiConfig.instance.requests_per_minute
+      errors.add(:base, "requests per minute exceeded")
+    end
+  end
 
   def for_request
     if conversation.conversation_contents.order(:created_at).first == self 

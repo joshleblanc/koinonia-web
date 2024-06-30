@@ -1,4 +1,6 @@
 <%= simple_form_for [conversation_content.conversation, conversation_content] do %>
+  <%= _1.error_notification %>
   <%= _1.input :text %>
   <%= _1.button :submit %>
+  <%= _1.error :base %>
 <% end %>

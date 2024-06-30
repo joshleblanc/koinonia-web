@@ -56,117 +56,33 @@ SimpleForm.setup do |config|
     b.use :label, wrap_with: { tag: :div, class: "label" }, class: "label-text"
     b.use :input, class: "input input-bordered w-full max-w-xs"
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
-
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
-    # use the component :full_error, like:
-    #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: :div, class: "bg-error text-error-content p-1 mt-4 w-full" }
   end
 
   config.wrappers :file, class: "form-control w-full max-w-xs",
     hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
-    ## Extensions enabled by default
-    # Any of these extensions can be disabled for a
-    # given input by passing: `f.input EXTENSION_NAME => false`.
-    # You can make any of these extensions optional by
-    # renaming `b.use` to `b.optional`.
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
     b.use :html5
 
-    # Calculates placeholders automatically from I18n
-    # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
-
-    ## Optional extensions
-    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
-    # to the input. If so, they will retrieve the values from the model
-    # if any exists. If you want to enable any of those
-    # extensions by default, you can change `b.optional` to `b.use`.
-
-    # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
-    b.optional :maxlength
-
-    # Calculate minlength from length validations for string inputs
-    b.optional :minlength
-
-    # Calculates pattern from format validations for string inputs
-    b.optional :pattern
-
-    # Calculates min and max from length validations for numeric inputs
-    b.optional :min_max
-
-    # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label, wrap_with: { tag: :div, class: "label" }, class: "label-text"
     b.use :input, class: "file-input file-input-bordered w-full max-w-xs"
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
-
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
-    # use the component :full_error, like:
-    #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+    b.use :hint,  wrap_with: { tag: :span, class: "hint" }
+    b.use :error, wrap_with: { tag: :span, class: "bg-error text-error-content p-1" }
   end
 
   config.wrappers :select, class: "form-control w-full max-w-xs",
     hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
-    ## Extensions enabled by default
-    # Any of these extensions can be disabled for a
-    # given input by passing: `f.input EXTENSION_NAME => false`.
-    # You can make any of these extensions optional by
-    # renaming `b.use` to `b.optional`.
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
     b.use :html5
-
-    # Calculates placeholders automatically from I18n
-    # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
-
-    ## Optional extensions
-    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
-    # to the input. If so, they will retrieve the values from the model
-    # if any exists. If you want to enable any of those
-    # extensions by default, you can change `b.optional` to `b.use`.
-
-    # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
-    b.optional :maxlength
-
-    # Calculate minlength from length validations for string inputs
-    b.optional :minlength
-
-    # Calculates pattern from format validations for string inputs
-    b.optional :pattern
-
-    # Calculates min and max from length validations for numeric inputs
-    b.optional :min_max
-
-    # Calculates readonly automatically from readonly attributes
     b.optional :readonly
-
-    # { controller: "tom-select", tom_select_url_value: packages_url, tom_select_value_field_value: "latest_package_version_id" }} 
-    ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
     b.use :label, wrap_with: { tag: :div, class: "label" }, class: "label-text"
     b.use :input, data: { controller: "tom-select" }
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
-    # use the component :full_error, like:
-    #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+    b.use :hint,  wrap_with: { tag: :span, class: "hint" }
+    b.use :error, wrap_with: { tag: :span, class: "bg-error text-error-content p-1" }
   end
 
   config.wrappers :checkbox, class: "form-control",
@@ -174,11 +90,11 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.wrapper :label_input, tag: :label, class: "label cursor-pointer" do 
-      _1.use :label_text, class: "lavel-text"
+      _1.use :label_text, class: "label-text"
       _1.use :input, class: "checkbox"
     end
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :error, wrap_with: { tag: :span, class: "bg-error text-error-content p-1" }
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -202,7 +118,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'error_notification'
+  config.error_notification_class = 'p-2 bg-error text-error-content'
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]

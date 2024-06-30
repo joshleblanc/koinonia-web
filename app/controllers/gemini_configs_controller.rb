@@ -71,6 +71,6 @@ class GeminiConfigsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gemini_config_params
-      params.require(:gemini_config).permit(:maximum_tokens, :documentation)
+      params.require(:gemini_config).permit(:tokens_per_minute, :requests_per_minute, :requests_per_day, :documentation)
     end
 end

@@ -1,3 +1,5 @@
 <%= show_for gemini_config do %>
-    <%= _1.attribute :maximum_tokens %>
+    <%= _1.attribute :tokens_per_minute %>
+    <%= _1.attribute :requests_per_minute %>
+    <%= _1.attribute :requests_per_day %>
 <% end %>
