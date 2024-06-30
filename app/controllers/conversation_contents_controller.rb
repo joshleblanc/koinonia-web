@@ -4,7 +4,7 @@ class ConversationContentsController < ApplicationController
 
   # GET /conversation_contents or /conversation_contents.json
   def index
-    @conversation_contents = @conversation.conversation_contents
+    @conversation_contents = @conversation.conversation_contents.order(created_at: :asc)
   end
 
   # GET /conversation_contents/1 or /conversation_contents/1.json
