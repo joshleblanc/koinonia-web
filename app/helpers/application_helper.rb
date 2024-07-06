@@ -42,6 +42,14 @@ module ApplicationHelper
     end
 
     def button_to(name = nil, options = nil, html_options = nil, &block)
-        super(name, options, { data: { controller: "loading-button" } }.merge(html_options || {}), &block)
+        html_options_override = {
+            data: {
+                controller: "loading-button"
+            }
+        }
+        if html_options.present? && html_options[:method] == :delete 
+            html_options_override[:class] = "button is-danger"
+        end
+        super(name, options, html_options_override.merge(html_options || {}), &block)
     end
 end

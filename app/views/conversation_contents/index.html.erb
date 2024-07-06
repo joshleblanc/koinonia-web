@@ -1,7 +1,9 @@
 <%= turbo_frame_tag dom_id(@conversation, :contents) do %>
   
   <%= turbo_stream_from @conversation %>
-  
+
+  <%= render "shared/hero", title: "Contents" %>
+
   <p style="color: green"><%= notice %></p>
 
   <div id="conversation_contents">

@@ -19,8 +19,11 @@
   }
 
   .box {
-    @apply block p-5 leading-6 text-base-content rounded-box bg-base-300 drop-shadow;
+    @apply m-2 block p-5 leading-6 text-base-content rounded-box bg-base-300 drop-shadow;
+  }
 
+  .box > .box {
+    @apply bg-base-200;
   }
 
   .container {

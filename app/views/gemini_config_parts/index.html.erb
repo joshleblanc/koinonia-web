@@ -1,8 +1,8 @@
 <%= turbo_frame_tag dom_id(@gemini_config, :parts) do %>
   <%= turbo_stream_from @gemini_config, :parts %>
-
+  <%= render "shared/hero", title: "Base Parts" %>
   <p style="color: green"><%= notice %></p>
-  <h1>Gemini config parts</h1>
+
   <div id="gemini_config_parts">
     <% @gemini_config_parts.each do |gemini_config_part| %>
       <%= render gemini_config_part %>

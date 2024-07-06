@@ -57,7 +57,7 @@ class PackageVersionsController < ApplicationController
     @package_version.destroy!
 
     respond_to do |format|
-      format.html { redirect_to package_versions_url, notice: "Package version was successfully destroyed." }
+      format.html { redirect_to package_package_versions_url(@package_version.package), notice: "Package version was successfully destroyed." }
       format.json { head :no_content }
     end
   end

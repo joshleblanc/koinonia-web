@@ -1,14 +1,13 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Gemini configs</h1>
-
 <div id="gemini_configs">
   <% @gemini_configs.each do |gemini_config| %>
-    <%= render gemini_config %>
-    <p>
-      <%= link_to "Show this gemini config", gemini_config %>
-    </p>
+    <div class="box">
+      <%= render gemini_config %>
+      <p>
+        <%= link_to "Show this gemini config", gemini_config %>
+      </p>
+    </div>
   <% end %>
 </div>
-
 <%= link_to "New gemini config", new_gemini_config_path %>
