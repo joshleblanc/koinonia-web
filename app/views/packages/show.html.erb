@@ -1,7 +1,8 @@
-<%= render "shared/hero", title: @package.name %>
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container">
+    <%= render "shared/hero", title: @package.name %>
+
     <div class="box">
       <%= render @package %>
       <div>

@@ -1,8 +1,8 @@
-<%= render "shared/hero", title: @conversation_content.conversation.title %>
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container">
     <%= turbo_frame_tag @conversation_content.conversation, :contents do %>
+      <%= render "shared/hero", title: @conversation_content.conversation.title %>
       <div class="box">
         <%= render @conversation_content %>
         <div>

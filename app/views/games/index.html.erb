@@ -1,7 +1,8 @@
-<%= render "shared/hero", title: "Games" %>
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container" id="games">
+    <%= render "shared/hero", title: "Games", link: new_game_path %>
+
     <div class="box">
       <%= link_to "New game", new_game_path %>
       <div class="overflow-x-auto">

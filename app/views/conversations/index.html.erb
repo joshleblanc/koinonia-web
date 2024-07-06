@@ -1,7 +1,8 @@
-<%= render "shared/hero", title: "Conversations" %>
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container">
+    <%= render "shared/hero", title: "Conversations", link: new_conversation_path %>
+
     <div id="conversations">
       <% @conversations.each do |conversation| %>
         <div class="box">
@@ -12,6 +13,5 @@
         </div>
       <% end %>
     </div>
-    <%= link_to "New conversation", new_conversation_path %>
   </div>
 </section>
