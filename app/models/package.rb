@@ -25,8 +25,8 @@
 #
 class Package < ApplicationRecord
   belongs_to :user
-  has_many :package_versions
-  has_many_attached :thumbnails
+  has_many :package_versions, dependent: :destroy
+  has_many_attached :thumbnails, dependent: :destroy
 
   belongs_to :latest_package_version, class_name: "PackageVersion", required: false
   belongs_to :latest_published_package_version, class_name: "PackageVersion", required: false

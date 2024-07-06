@@ -27,7 +27,7 @@ class GameVersion < ApplicationRecord
   belongs_to :user
   belongs_to :game
 
-  has_many :game_version_package_versions
+  has_many :game_version_package_versions, dependent: :destroy
   has_many :package_versions, through: :game_version_package_versions
   has_many :packages, through: :package_versions
 
