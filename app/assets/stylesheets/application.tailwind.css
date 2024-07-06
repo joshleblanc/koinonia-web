@@ -26,4 +26,12 @@
   .container {
     @apply relative py-5 px-6 leading-6 text-base-content bg-base-100 rounded-md;
   }
+
+  .button {
+    @apply btn;
+  }
+
+  .button.is-danger {
+    @apply btn-error;  
+  }
 }

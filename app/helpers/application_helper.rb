@@ -40,4 +40,8 @@ module ApplicationHelper
     def link_to(name = nil, options = nil, html_options = nil, &block)
         super(name, options, { class: "link" }.merge(html_options || {}), &block)
     end
+
+    def button_to(name = nil, options = nil, html_options = nil, &block)
+        super(name, options, { data: { controller: "loading-button" } }.merge(html_options || {}), &block)
+    end
 end
