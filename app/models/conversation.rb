@@ -49,7 +49,7 @@ class Conversation < ApplicationRecord
       prev: new_content
     )
 
-    new_content.update(next: next_content, token_count: response["usageMetadata"]["promptTokenCount"] - content.sum(:token_count))
+    new_content.update(next: next_content)
   end
 
   def send_message(what)
@@ -58,7 +58,9 @@ class Conversation < ApplicationRecord
       text: what,
       user:,
       prev: last_message
-    )
+    ).tap do 
+      _1.token_count = GeminiClient.instance.count_tokens({ contents: _1.for_request })["totalTokens"]
+    end
   end
 
   def token_count 

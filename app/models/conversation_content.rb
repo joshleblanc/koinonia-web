@@ -49,8 +49,8 @@ class ConversationContent < ApplicationRecord
     prev_content = ConversationContent.find_by(next_id: id)
 
 
-    prev_content.update(next: next_content)
-    next_content.update(prev: prev_content)
+    prev_content&.update(next: next_content)
+    next_content&.update(prev: prev_content)
   end
 
   def requests_per_day
@@ -60,7 +60,10 @@ class ConversationContent < ApplicationRecord
   end
 
   def tokens_per_minute 
-    if ConversationContent.last_minute.sum(:token_count) >= GeminiConfig.instance.tokens_per_minute
+    last_minute_sum = ConversationContent.last_minute.sum(:token_count)
+    last_minute_sum += token_count unless persisted? 
+
+    if last_minute_sum >= GeminiConfig.instance.tokens_per_minute
       errors.add(:base, "tokens per minute exceeded")
     end
   end
@@ -72,9 +75,10 @@ class ConversationContent < ApplicationRecord
   end
 
   def for_request
-    if conversation.conversation_contents.order(:created_at).first == self 
-      { role:, parts: [ *base_parts, *documentation, { text: } ]}
+    contents = conversation.conversation_contents.order(:created_at)
 
+    if contents.empty? || contents.order(:created_at).first == self 
+      { role:, parts: [ *base_parts, *documentation, { text: } ]}
     else 
       { role:, parts: [ { text: } ]}
     end
