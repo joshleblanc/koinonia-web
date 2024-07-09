@@ -36,8 +36,6 @@ class ConversationContent < ApplicationRecord
   scope :last_24_hours, -> { where(role: :user, created_at: (Time.zone.now - 24.hours)..) }
   scope :last_minute, -> { where(role: :user, created_at: (Time.zone.now - 1.minute)..) }
  
-  broadcasts_refreshes_to :conversation
-
   validate :requests_per_day, on: :create
   validate :tokens_per_minute, on: :create
   validate :requests_per_minute, on: :create

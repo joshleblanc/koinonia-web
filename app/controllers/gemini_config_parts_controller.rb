@@ -31,7 +31,7 @@ class GeminiConfigPartsController < ApplicationController
 
     respond_to do |format|
       if @gemini_config_part.save
-        format.html { redirect_to new_gemini_config_gemini_config_part_url(@gemini_config), notice: "Gemini config part was successfully created." }
+        format.html { redirect_to gemini_config_path(@gemini_config), notice: "Gemini config part was successfully created." }
         format.json { render :show, status: :created, location: @gemini_config_part }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,7 +61,6 @@ class GeminiConfigPartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to gemini_config_gemini_config_parts_url(gemini_config), notice: "Gemini config part was successfully destroyed." }
       format.json { head :no_content }
-      format.turbo_stream
     end
   end
 

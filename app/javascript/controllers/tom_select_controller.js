@@ -1,8 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import TomSelect from 'tom-select';
 
-console.log("pog")
-
 export default class extends Controller {
     static values = { 
         url: String,
@@ -16,7 +14,6 @@ export default class extends Controller {
     }
 
     connect() {
-        console.log("connected")
         const settings = {
             plugins: ['remove_button'],
             valueField: this.valueFieldValue || "id",

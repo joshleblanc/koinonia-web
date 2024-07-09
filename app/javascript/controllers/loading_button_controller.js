@@ -13,7 +13,7 @@ export default class extends Controller {
     }
 
     disconnect() {
-        this.form.removeEventListener(this.addClass)
+        this.form.removeEventListener('submit', this.addClass)
     }
 
     addClass = (e) => {
