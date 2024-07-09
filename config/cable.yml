@@ -1,9 +1,15 @@
+default: &default
+  adapter: solid_cable
+  polling_interval: 1.second
+  keep_messages_around_for: 1.day
+
 development:
-  adapter: postgresql
+  <<: *default
+  silence_polling: true
 
 test:
   adapter: test
 
 production:
-  adapter: postgresql
-
+  <<: *default
+  polling_interval: 0.1.seconds

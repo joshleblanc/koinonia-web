@@ -291,6 +291,8 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    solid_cable (1.0.3)
+      rails (< 9)
     solid_cache (0.6.0)
       activejob (>= 7)
       activerecord (>= 7)
@@ -381,6 +383,7 @@ DEPENDENCIES
   selenium-webdriver
   show_for (~> 0.8.1)
   simple_form (~> 5.3)
+  solid_cable (~> 1.0)
   solid_cache (~> 0.6.0)
   solid_queue (~> 0.3.3)
   sprockets-rails
