@@ -262,10 +262,6 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    redis (5.2.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.22.2)
-      connection_pool
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
@@ -378,7 +374,6 @@ DEPENDENCIES
   pundit (~> 2.3)
   rack-cors (~> 2.0)
   rails (~> 7.1.2)
-  redis (>= 4.0.1)
   rubyzip (~> 2.3)
   selenium-webdriver
   show_for (~> 0.8.1)
