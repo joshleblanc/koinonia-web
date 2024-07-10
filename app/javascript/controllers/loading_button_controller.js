@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
     static values = {
-        class: String
+        message: String
     }
 
     connect() {
@@ -17,8 +17,13 @@ export default class extends Controller {
     }
 
     addClass = (e) => {
-        const child = document.createElement("span")
-        child.className = "loading loading-spinner";
-        this.element.prepend(child)
+        if(window.confirm(this.messageValue)) {
+            const child = document.createElement("span")
+            child.className = "loading loading-spinner";
+            this.element.prepend(child)
+        } else {
+            e.stopPropagation();
+            e.preventDefault();
+        }
     }
 }

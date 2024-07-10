@@ -107,7 +107,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'btn mt-8'
+  config.button_class = 'btn btn-accent mt-8'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.

@@ -2,7 +2,7 @@
   <div class="container">
     <%= turbo_frame_tag dom_id(@game, :versions) do %>
       <% @game_versions.each do |game_version| %>
-        <%= render "shared/hero", title: "Versions", link: new_game_game_version_path(@game) %>
+        <%= render "shared/hero", title: "Versions" %>
         <p style="color: green"><%= notice %></p>
         <div class="box">
           <%= render game_version %>

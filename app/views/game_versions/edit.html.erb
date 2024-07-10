@@ -3,11 +3,6 @@
     <div class="container">
       <%= render "shared/hero", title: "Editing game version" %>
       <%= render "form", game_version: @game_version %>
-      <br>
-      <div>
-        <%= link_to "Show this game version", @game_version %> |
-        <%= link_to "Back to game versions", game_game_versions_path(@game_version.game) %>
-      </div>
     </div>
   </section>
 <% end %>

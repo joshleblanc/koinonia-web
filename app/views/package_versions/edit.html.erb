@@ -4,11 +4,6 @@
     <%= turbo_frame_tag dom_id(@package_version.package, :versions) do %>
       <%= render "shared/hero", title: "Editing package version" %>
       <%= render "form", package_version: @package_version %>
-      <br>
-      <div>
-        <%= link_to "Show this package version", @package_version %> |
-        <%= link_to "Back to package versions", package_package_versions_path(@package_version.package) %>
-      </div>
     <% end %>
   </div>
 </div>

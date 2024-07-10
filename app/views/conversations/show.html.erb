@@ -5,9 +5,6 @@
     <%= render "shared/hero", title: "Conversation" %>
     <div class="box">
       <%= render @conversation %>
-      <%= link_to "Edit this conversation", edit_conversation_path(@conversation) %> |
-      <%= link_to "Back to conversations", conversations_path %>
-      <%= button_to "Destroy this conversation", @conversation, method: :delete, class: "button is-danger mt-2" %>
     </div>
     <%= turbo_frame_tag dom_id(@conversation, :contents), src: conversation_conversation_contents_path(@conversation), refresh: :morph do %>
       <p>Loading contents...</p>

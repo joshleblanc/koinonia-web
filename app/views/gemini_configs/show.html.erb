@@ -5,9 +5,6 @@
 
     <div class="box">
       <%= render @gemini_config %>
-      <div>
-        <%= link_to "Edit this gemini config", edit_gemini_config_path(@gemini_config), class: "link" %>
-      </div>
     </div>
     <%= turbo_frame_tag dom_id(@gemini_config, :parts), src: gemini_config_gemini_config_parts_url(@gemini_config), refresh: :morph do %>
       <p>Loading contents...</p>

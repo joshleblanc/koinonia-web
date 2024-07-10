@@ -5,11 +5,6 @@
     <%= turbo_frame_tag dom_id(@game_version.game, :versions) do %>
       <div class="box">
         <%= render @game_version %>
-        <div>
-          <%= link_to "Edit this game version", edit_game_version_path(@game_version) %> |
-          <%= link_to "Back to game versions", game_game_versions_path(@game_version.game) %>
-          <%= button_to "Destroy this game version", @game_version, method: :delete %>
-        </div>
       </div>
     <% end %>
   </div>

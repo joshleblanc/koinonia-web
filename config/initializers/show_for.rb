@@ -4,7 +4,7 @@ ShowFor.setup do |config|
   config.show_for_tag = :dl
 
   # The DOM class set for show_for tag. Default is nil
-  config.show_for_class = "divide-y divide-gray-100 box m-4"
+  config.show_for_class = "box m-4"
 
   # The tag which wraps each attribute/association call. Default is :p.
   config.wrapper_tag = :div

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :package_versions, shallow: true
   end
   
+  resources :users, except: [:index]
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
   }

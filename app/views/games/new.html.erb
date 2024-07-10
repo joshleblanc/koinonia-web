@@ -1,10 +1,6 @@
 <section class="section">
   <div class="container">
-    <%= render "shared/hero", title: "New Game" %>
+    <%= render "shared/hero", title: "New Game", link: games_path, link_text: "Back to games" %>
     <%= render "form", game: @game %>
-    <br>
-    <div>
-      <%= link_to "Back to games", games_path %>
-    </div>
   </div>
 </section>

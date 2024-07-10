@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container" id="packages">
-    <%= render "shared/hero", title: "Packages", link: new_package_path %>
+    <%= render "shared/hero", title: "Packages", link: new_package_path, link_text: "New Package" %>
     <% @packages.each do |package| %>
       <div class="box">
         <%= render package %>

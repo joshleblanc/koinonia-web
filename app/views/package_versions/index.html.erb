@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(@package, :versions) do %>
-  <%= render "shared/hero", title: "Versions", link: new_package_package_version_path(@package) %>
+  <%= render "shared/hero", title: "Versions" %>
   <p style="color: green"><%= notice %></p>
   <div id="package_versions">
     <% @package_versions.each do |package_version| %>
