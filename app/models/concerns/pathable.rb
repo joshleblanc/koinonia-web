@@ -7,7 +7,7 @@ module Pathable
         arr = []
         model = send(association.name)
         if model.respond_to? :path
-          arr.push *model.path.flatten
+          arr.push(*model.path.flatten)
         else
           arr.push model
         end

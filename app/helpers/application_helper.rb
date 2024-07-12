@@ -40,14 +40,22 @@ module ApplicationHelper
     super(name, options, { class: "btn btn-accent" }.merge(html_options || {}), &block)
   end
 
-  def route_parts(options)
-    # Check if the resource's class has a shallow route defined
-    shallow_routes = Rails.application.routes.routes.select do |route|
-      route.defaults[:controller] == resource.class.name.underscore.pluralize
-    end
-
-    shallow_routes.any? do |route|
-      route.path.spec.to_s.exclude?(":#{resource.class.name.foreign_key}")
-    end
+  def route_parts(controller, action)
+    route = Rails.application.routes.routes.select do 
+      _1.defaults[:controller] == controller && _1.defaults[:action] == action
+    end.first
+    route.parts.reject { _1 == :format }
+  end
+  
+  # let me be the first to say that this is hacky af
+  def url_for_hero(controller, action)
+    model = instance_variable_get(:"@#{controller.singularize}")
+    parts = route_parts(controller, action.to_s)
+    obj = {
+      controller: controller,
+      action: action
+    }
+    parts.each { obj[_1] = model.send(_1) }
+    obj
   end
 end

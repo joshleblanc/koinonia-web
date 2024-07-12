@@ -23,6 +23,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class PackageVersion < ApplicationRecord
+  include Pathable 
+  
   belongs_to :package
   belongs_to :user
 
