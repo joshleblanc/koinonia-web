@@ -1,10 +1,14 @@
 <%= turbo_frame_tag dom_id(@gemini_config, :parts), refresh: :morph do %>
   <%= render "shared/hero", title: "Base Parts", exclude: [:new] %>
   <p style="color: green"><%= notice %></p>
-
   <div id="gemini_config_parts">
     <% @gemini_config_parts.each do |gemini_config_part| %>
-      <%= render gemini_config_part %>
+      <div class="box">
+        <%= render gemini_config_part %>
+        <p>
+          <%= link_to "Show this part", gemini_config_part %>
+        </p>
+      </div>
     <% end %>
   </div>
   <%= turbo_frame_tag dom_id(@gemini_config, :new_part), src: new_gemini_config_gemini_config_part_path(@gemini_config), target: :_top, refresh: :morph %>

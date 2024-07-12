@@ -1,10 +1,4 @@
 <%= turbo_frame_tag dom_id(@game, :versions) do %>
-
+  <%= render "shared/hero", title: "New Game Version" %>
   <%= render "form", game_version: @game_version %>
-
-  <br>
-
-  <div>
-    <%= link_to "Back to game versions", game_game_versions_path(@game) %>
-  </div>
 <% end %>

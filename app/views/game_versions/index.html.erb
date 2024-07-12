@@ -1,9 +1,8 @@
 <section class="section">
   <div class="container">
     <%= turbo_frame_tag dom_id(@game, :versions) do %>
+      <%= render "shared/hero", title: "Game Versions" %>
       <% @game_versions.each do |game_version| %>
-        <%= render "shared/hero", title: "Versions" %>
-        <p style="color: green"><%= notice %></p>
         <div class="box">
           <%= render game_version %>
           <p>

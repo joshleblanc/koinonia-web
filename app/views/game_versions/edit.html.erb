@@ -1,8 +1,8 @@
-<%= turbo_frame_tag dom_id(@game_version.game, :versions) do %>
-  <section class="section">
-    <div class="container">
+<section class="section">
+  <div class="container">
+    <%= turbo_frame_tag dom_id(@game_version.game, :versions) do %>
       <%= render "shared/hero", title: "Editing game version" %>
       <%= render "form", game_version: @game_version %>
-    </div>
-  </section>
-<% end %>
+    <% end %>
+  </div>
+</section>

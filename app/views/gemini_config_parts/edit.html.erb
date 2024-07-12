@@ -1,5 +1,5 @@
-<h1>Editing gemini config part</h1>
 <%= turbo_frame_tag dom_id(@gemini_config_part.gemini_config, :parts) do %>
+  <%= render "shared/hero", title: "Editing config part" %>
   <div class="box">
     <%= render "form", gemini_config_part: @gemini_config_part %>
   </div>
