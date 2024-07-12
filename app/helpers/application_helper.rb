@@ -40,14 +40,14 @@ module ApplicationHelper
     super(name, options, { class: "btn btn-accent" }.merge(html_options || {}), &block)
   end
 
-  def route_for(controller, action)
+  def route_for_hero(controller, action)
     Rails.application.routes.routes.select do 
       _1.defaults[:controller] == controller && _1.defaults[:action] == action
     end.first
   end
 
   def route_parts(controller, action)
-    route = route_for(controller, action)
+    route = route_for_hero(controller, action)
     route&.parts&.reject { _1 == :format }
   end
   
