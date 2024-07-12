@@ -44,7 +44,7 @@ class GeminiConfigPartsController < ApplicationController
   def update
     respond_to do |format|
       if @gemini_config_part.update(gemini_config_part_params)
-        format.html { redirect_to gemini_config_part_url(@gemini_config_part), notice: "Gemini config part was successfully updated." }
+        format.html { redirect_to gemini_config_gemini_config_parts_url(@gemini_config_part.gemini_config), notice: "Gemini config part was successfully updated." }
         format.json { render :show, status: :ok, location: @gemini_config_part }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 <section class="section">
   <div class="container">
-    <%= render "shared/hero", title: "Gemini Config" %>
+    <%= render "shared/hero", title: "Gemini Config", exclude: [:index] %>
 
     <div class="box">
       <%= render @gemini_config %>
