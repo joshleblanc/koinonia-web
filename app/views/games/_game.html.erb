@@ -1,6 +1,6 @@
 <%= show_for game do |g| %>
   <%= g.attribute :cover_image do %>
-    <%= image_tag(game.cover_image) if game.cover_image.attached? %>
+    <%= image_tag(game.cover_image, class: "max-w-40") if game.cover_image.attached? %>
   <% end %>
   <%= g.attribute :name %>
   <%= g.attribute :description %>
