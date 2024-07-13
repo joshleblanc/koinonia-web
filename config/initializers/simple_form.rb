@@ -56,7 +56,7 @@ SimpleForm.setup do |config|
     b.use :label, wrap_with: { tag: :div, class: "label" }, class: "label-text"
     b.use :input, class: "input input-bordered w-full max-w-xs"
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :div, class: "bg-error text-error-content p-1 mt-4 w-full" }
+    b.use :error, wrap_with: { tag: :div, class: "text-error p-1 w-full" }
   end
 
   config.wrappers :file, class: "form-control w-full max-w-xs",

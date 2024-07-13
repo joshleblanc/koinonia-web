@@ -36,10 +36,9 @@ class Conversation < ApplicationRecord
 
     Rails.logger.debug body
 
-    response = GeminiClient.instance.generate_content(body)
+    response = user.gemini_client.generate_content(body)
 
     Rails.logger.debug response
-
 
     next_content = conversation_contents.create(
       role: "model",
@@ -58,9 +57,7 @@ class Conversation < ApplicationRecord
       text: what,
       user:,
       prev: last_message
-    ).tap do 
-      _1.token_count = GeminiClient.instance.count_tokens({ contents: _1.for_request })["totalTokens"]
-    end
+    )
   end
 
   def token_count 

@@ -39,8 +39,11 @@ class ConversationContent < ApplicationRecord
   validate :requests_per_day, on: :create
   validate :tokens_per_minute, on: :create
   validate :requests_per_minute, on: :create
+  validate :gemini_key_valid, on: :create
 
   before_destroy :link_siblings!, prepend: true
+
+  before_save :count_tokens, if: :user_role?
 
   def link_siblings!
     next_content = ConversationContent.find_by(prev_id: id)
@@ -49,6 +52,15 @@ class ConversationContent < ApplicationRecord
 
     prev_content&.update(next: next_content)
     next_content&.update(prev: prev_content)
+  end
+
+  def count_tokens 
+    self.token_count = user.gemini_client.count_tokens({ contents: for_request })["totalTokens"]
+  end
+
+  def gemini_key_valid
+    return if user.gemini_key_valid?
+    errors.add(:base, "user gemini key invalid")
   end
 
   def requests_per_day
@@ -72,10 +84,18 @@ class ConversationContent < ApplicationRecord
     end
   end
 
-  def for_request
-    contents = conversation.conversation_contents.order(:created_at)
+  def user_role? 
+    role == "user"
+  end
 
-    if contents.empty? || contents.order(:created_at).first == self 
+  def model_role?
+    role == "model"
+  end
+
+  def for_request
+    contents = conversation&.conversation_contents&.order(:created_at)
+
+    if contents&.empty? || contents&.order(:created_at)&.first == self 
       { role:, parts: [ *base_parts, *documentation, { text: } ]}
     else 
       { role:, parts: [ { text: } ]}

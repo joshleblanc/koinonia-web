@@ -1,12 +1,13 @@
-<%= turbo_frame_tag dom_id(@conversation, :contents) do %>
-
-  <%= render "shared/hero", title: "Contents" %>
-
-  <p style="color: green"><%= notice %></p>
-
-  <div id="conversation_contents">
-    <%= render @conversation_contents %>
+<section class="section">
+  <div class="container">
+    <%= turbo_stream_from @conversation %>
+    <%= turbo_frame_tag dom_id(@conversation, :contents) do %>
+      <%= render "shared/hero", title: "Contents" %>
+      <p style="color: green"><%= notice %></p>
+      <div id="conversation_contents">
+        <%= render @conversation_contents %>
+      </div>
+      <%= turbo_frame_tag dom_id(@conversation, :new_content), src: new_conversation_conversation_content_path(@conversation), refresh: :morph %>
+    <% end %>
   </div>
-
-  <%= turbo_frame_tag dom_id(@conversation, :new_content), src: new_conversation_conversation_content_path(@conversation), target: :_top, refresh: :morph %>
-<% end %>
+</section>

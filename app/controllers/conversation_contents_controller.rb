@@ -33,6 +33,7 @@ class ConversationContentsController < ApplicationController
         
         ReceiveMessageJob.perform_later(@conversation)
 
+        format.turbo_stream
         format.html { redirect_to conversation_path(@conversation_content.conversation), notice: "Conversation content was successfully created."}
         format.json { render :show, status: :created, location: @conversation_content }
       else

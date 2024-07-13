@@ -50,11 +50,22 @@ module ApplicationHelper
     route = route_for_hero(controller, action)
     route&.parts&.reject { _1 == :format }
   end
+
+  def model
+    instance_variable_get(:"@#{params[:controller].singularize}")
+  end
+
+  def models 
+    instance_variable_get(:"@#{params[:controller].pluralize}")
+  end
+
+  def model_class
+    model.class
+  end
   
   # let me be the first to say that this is hacky af
   def url_for_hero(params, action)
     controller = params[:controller]
-    model = instance_variable_get(:"@#{controller.singularize}")
     parts = route_parts(controller, action.to_s)
     obj = {
       controller: controller,
