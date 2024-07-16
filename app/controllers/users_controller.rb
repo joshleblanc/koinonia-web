@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    authroize @user
+    authorize @user
 
     respond_to do |format|
       if @user.save
