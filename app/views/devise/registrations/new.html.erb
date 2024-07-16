@@ -1,40 +1,33 @@
-
 <section class="section">
   <div class="container">
     <%= render "shared/hero", title: "Sign up", exclude: [:new, :index, :show, :edit] %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email, class: "label" %>
-        <div class="control">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      <div class="form-control w-full max-w-xs">
+        <div class="label">
+          <%= f.label :email, class: "label-text" %>
         </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
       </div>
-
-      <div class="field">
-        <%= f.label :password, class: "label" %>
+      <div class="form-control w-full max-w-xs">
+        <div class="label">
+          <%= f.label :password, class: "label-text" %>
+        </div>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
-        <div class="control">
-          <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
-        </div>
+        <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
       </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation, class: "label" %>
-        <div class="control">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+      <div class="form-control w-full max-w-xs">
+        <div class="label">
+          <%= f.label :password_confirmation, class: "label-text" %>
         </div>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full max-w-xs" %>
       </div>
-
       <div class="actions">
-        <%= f.submit "Sign up", class: "button is-link" %>
+        <%= f.submit "Sign up", class: "btn btn-primary mt-8" %>
       </div>
     <% end %>
-
     <%= render "devise/shared/links" %>
   </div>
 </section>
-

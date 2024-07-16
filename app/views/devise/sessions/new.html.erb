@@ -1,40 +1,31 @@
-
 <section class="section">
   <div class="container">
     <%= render "shared/hero", title: "Log In", exclude: [:index, :new, :edit, :show] %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email, class: "label" %>
-        <div class="control">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      <div class="form-control w-full max-w-xs">
+        <div class="label">
+          <%= f.label :email, class: "label-text" %>
         </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full max-w-xs" %>
       </div>
-
-      <div class="field">
-        <%= f.label :password, class: "label" %>
-        <div class="control">
-          <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+      <div class="form-control w-full max-w-xs">
+        <div class="label">
+          <%= f.label :password, class: "label-text" %>
         </div>
+        <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered w-full max-w-xs" %>
       </div>
-
       <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <div class="control">
-            <%= f.label :remember_me, class: "checkbox" do %>
-              <%= f.check_box :remember_me %>
-              Remember Me
-            <% end %>
-          </div>
+        <div class="form-control w-full max-w-xs">
+          <%= f.label :remember_me, class: "label cursor-pointer" do %>
+            <span class="label-text">Remember Me</span>
+            <%= f.check_box :remember_me, class: "checkbox" %>
+          <% end %>
         </div>
       <% end %>
-
       <div class="actions">
-        <%= f.submit "Log in", class: "button is-link" %>
+        <%= f.submit "Log in", class: "btn btn-primary mt-8" %>
       </div>
     <% end %>
-
     <%= render "devise/shared/links" %>
   </div>
-
-
 </section>
