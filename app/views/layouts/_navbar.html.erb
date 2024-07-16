@@ -86,19 +86,24 @@
       <% if current_user %>
         <li class="justify-center"><%= link_to "Profile", user_url(current_user), class: "navbar-item" %></li>
         <li class="justify-center">
-          <%= button_to destroy_user_session_url, class: "button is-light", method: :delete do %>
+          <%= button_to destroy_user_session_url, class: "navbar-item", method: :delete do %>
             Log out
           <% end %>
         </li>
         
       <% else %>
-        <%= link_to new_user_registration_url, class: "button is-primary" do %>
-          <strong>Sign up</strong>
-        <% end %>
+        <li class="justify-center">
+          <%= link_to new_user_registration_url, class: "navbar-item" do %>
+            <strong>Sign up</strong>
+          <% end %>
+        </li>
 
-        <%= link_to new_user_session_url, class: "button is-light" do %>
-          Log in
-        <% end %>
+        <li class="justify-center">
+          <%= link_to new_user_session_url, class: "navbar-item" do %>
+            Log in
+          <% end %>
+        </li>
+
       <% end %>
       <li>
         <div class="dropdown">
