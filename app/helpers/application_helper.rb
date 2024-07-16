@@ -51,16 +51,16 @@ module ApplicationHelper
     route&.parts&.reject { _1 == :format }
   end
 
-  def model
+  def hero_model
     instance_variable_get(:"@#{params[:controller].singularize}")
   end
 
-  def models 
+  def hero_models 
     instance_variable_get(:"@#{params[:controller].pluralize}")
   end
 
-  def model_class
-    model.class
+  def hero_model_class
+    hero_model.class
   end
   
   # let me be the first to say that this is hacky af
@@ -71,7 +71,7 @@ module ApplicationHelper
       controller: controller,
       action: action
     }
-    parts&.each { obj[_1] = model&.send(_1) || params[_1] }
+    parts&.each { obj[_1] = hero_model&.send(_1) || params[_1] }
     obj
   end
 end
