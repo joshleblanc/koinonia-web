@@ -39,14 +39,12 @@ class User < ApplicationRecord
   end
 
   def gemini_key_valid?
-    p "Checking if key valid"
     return true unless gemini_key.present?
     
-    content = ConversationContent.new(text: "ACK")
-    gemini_client.count_tokens(content.for_request)
+    content = ConversationContent.new(user: self, role: :user, text: "ACK")
+    content.count_tokens
     true
   rescue Faraday::BadRequestError
-    p "Caught error"
     false
   end
 
