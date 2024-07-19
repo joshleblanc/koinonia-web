@@ -15,7 +15,7 @@
 
 @layer components {
   .section {
-    @apply block p-12 leading-6 text-gray-400 lg:p-12;
+    @apply block p-12 leading-6 text-gray-400 lg:p-12 flex justify-center;
   }
 
   .box {
