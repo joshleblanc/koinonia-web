@@ -14,7 +14,7 @@
     <% if params[:action] == "show" && !exclude.include?(:edit) && policy(hero_model).edit? %>
       <%= link_to "Edit this #{params[:controller].singularize.titleize}", url_for_hero(params, :edit), class: "btn btn-primary" %>
       <% if route_for_hero(params[:controller], :destroy) %>
-        <%= button_to "Destroy this game", url_for_hero(params, :destroy), method: :delete, class: "btn btn-error", form_class: "inline-block", data: { controller: "loading-button", loading_button_message_value: "Are you sure you want to delete this #{params[:controller].singularize}?"} %>
+        <%= button_to "Destroy this #{params[:controller].singularize.titleize}", url_for_hero(params, :destroy), method: :delete, class: "btn btn-error", form_class: "inline-block", data: { controller: "loading-button", loading_button_message_value: "Are you sure you want to delete this #{params[:controller].singularize}?"} %>
       <% end %>
     <% end %>
   </div>
