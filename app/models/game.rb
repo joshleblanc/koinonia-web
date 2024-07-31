@@ -31,7 +31,7 @@ class Game < ApplicationRecord
 
   has_one_attached :cover_image
 
-  before_commit :assign_latest
+  before_save :assign_latest
 
   def assign_latest
     self.latest_game_version = game_versions.order(created_at: :desc).first
