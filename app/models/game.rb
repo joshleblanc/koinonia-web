@@ -38,6 +38,11 @@ class Game < ApplicationRecord
     self.latest_published_game_version = game_versions.published.order(created_at: :desc).first
   end
 
+  def assign_latest!
+    assign_latest
+    save
+  end
+
   # def latest_game_version
   #     game_versions.order(created_at: :desc).first
   # end
