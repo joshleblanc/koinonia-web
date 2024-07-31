@@ -25,14 +25,14 @@
 #
 class GameVersion < ApplicationRecord
   belongs_to :user
-  belongs_to :game, touch: true
+  belongs_to :game
 
   has_many :game_version_package_versions, dependent: :destroy
   has_many :package_versions, through: :game_version_package_versions
   has_many :packages, through: :package_versions
 
   before_save :set_published_at, if: :published_changed?
-  after_save { game.assign_latest! }
+  after_commit { game.assign_latest! }
 
   scope :published, -> { where(published: true) }
 
