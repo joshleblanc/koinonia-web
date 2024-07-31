@@ -25,7 +25,7 @@
 #
 class GameVersion < ApplicationRecord
   belongs_to :user
-  belongs_to :game
+  belongs_to :game, touch: true
 
   has_many :game_version_package_versions, dependent: :destroy
   has_many :package_versions, through: :game_version_package_versions
@@ -37,9 +37,9 @@ class GameVersion < ApplicationRecord
 
   def set_published_at
     self.published_at = if published?
-                          Time.now
-                        else
-                          nil
-                        end
+        Time.now
+      else
+        nil
+      end
   end
 end
