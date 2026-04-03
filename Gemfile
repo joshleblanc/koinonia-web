@@ -96,3 +96,5 @@ gem "solid_queue", "~> 0.3.3"
 gem "solid_cache", "~> 0.6.0"
 
 gem "solid_cable", "~> 1.0"
+
+gem "thruster", "~> 0.1.20"
