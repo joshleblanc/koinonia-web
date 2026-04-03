@@ -81,4 +81,4 @@ production:
   <<: *default
   database: not_crayta_web_production
   username: not_crayta_web
-  password: <%= ENV["NOT_CRAYTA_WEB_DATABASE_PASSWORD"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
